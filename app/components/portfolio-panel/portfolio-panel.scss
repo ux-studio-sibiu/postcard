@@ -4,11 +4,13 @@
   height: 100%;
 
   .portfolio-title {
-    font-size: clamp(4rem, 9vw, 4.5rem);
+    // Lower floor lets it shrink to fit narrow screens.
+    font-size: clamp(2rem, 12vw, 4.5rem);
     font-weight: 400;
     line-height: 0.95;
     letter-spacing: -0.02em;
     margin-bottom: 1.5rem;
+    overflow: hidden;
   }
 
   // Push the contact + blurb to the bottom of the square, as in the reference.
