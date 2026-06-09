@@ -41,35 +41,39 @@ export function SwiperGallery() {
   const handleLeave = () => clearIntent();
 
   return (
-    <div
-      className={`nsc-swiper-gallery${glitching ? " is-glitching" : ""}`}
-      onMouseEnter={handleEnter}
-      onMouseLeave={handleLeave}
-      onAnimationEnd={() => setGlitching(false)}
-    >
-      <Swiper
-        className="gallery-swiper"
-        modules={[EffectFade, Pagination]}
-        effect="fade"
-        fadeEffect={{ crossFade: true }}
-        loop
-        slidesPerView={1}
-        pagination={{ el: ".gallery-pagination", clickable: true }}
+    <div className="nsc-swiper-gallery">
+      {/* Hover logic lives on the image stage only, so the pagination dots
+          (a sibling, below) never trigger the glitch. */}
+      <div
+        className={`gallery-stage${glitching ? " is-glitching" : ""}`}
+        onMouseEnter={handleEnter}
+        onMouseLeave={handleLeave}
+        onAnimationEnd={() => setGlitching(false)}
       >
-        {gallerySlides.map((slide, idx) => (
-          <SwiperSlide key={idx}>
-            <Image
-              src={slide.src}
-              alt={slide.alt}
-              className="object-cover"
-              fill
-              priority={idx === 0}
-              sizes="(max-width: 768px) 100vw, 45vw"
-              placeholder="blur"
-            />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+        <Swiper
+          className="gallery-swiper"
+          modules={[EffectFade, Pagination]}
+          effect="fade"
+          fadeEffect={{ crossFade: true }}
+          loop
+          slidesPerView={1}
+          pagination={{ el: ".gallery-pagination", clickable: true }}
+        >
+          {gallerySlides.map((slide, idx) => (
+            <SwiperSlide key={idx}>
+              <Image
+                src={slide.src}
+                alt={slide.alt}
+                className="object-cover"
+                fill
+                priority={idx === 0}
+                sizes="(max-width: 768px) 100vw, 45vw"
+                placeholder="blur"
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
 
       <div className="gallery-pagination" />
     </div>

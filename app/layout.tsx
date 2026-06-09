@@ -3,7 +3,7 @@ import { Header } from "@/app/components/header/header";
 import "@/app/styles/globals.scss";
 
 export const metadata: Metadata = {
-  title: "Sophia Mitchell — Portfolio",
+  title: "Turcanu Razvan — Portfolio",
   description: "Photography portfolio prototype",
 };
 
