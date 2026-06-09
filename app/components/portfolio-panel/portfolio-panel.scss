@@ -30,11 +30,12 @@
   }
 
   .portfolio-blurb {
-    font-size: 0.95rem;
-    font-weight: 700;
-    line-height: 1.5;
-    max-width: 46ch;
+    max-width: 75ch;
     margin: 0 auto;
+    font-size: .75rem;
+    // font-weight: 700;
+    line-height: 1.5;
+    // color:var(--color-muted);
   }
 
   @media (max-width: 768px) {

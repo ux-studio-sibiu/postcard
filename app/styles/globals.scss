@@ -39,8 +39,29 @@ body {
   margin: 0 auto;
   padding: 4rem 2.5rem;
   padding-top: 0rem;
+  // Scaling from the centre keeps it centred (body already does that), so on
+  // short viewports the content shrinks inward instead of touching the edges.
+  transform-origin: center;
 
+  // Short viewports: scale the whole block down a touch so it doesn't crowd
+  // the top/bottom edges.
+  @media (max-height: 820px) {
+    transform: scale(0.95);
+  }
+
+  @media (max-height: 720px) {
+    transform: scale(0.9);
+  }
+
+  @media (max-height: 620px) {
+    transform: scale(0.85);
+  }
+
+  // On mobile the container fills the screen edge-to-edge — no scaling, full
+  // viewport height.
   @media (max-width: 768px) {
     padding: 3rem 1.25rem;
+    min-height: 100dvh;
+    transform: none;
   }
 }

@@ -15,8 +15,8 @@ export type GallerySlide = {
 };
 
 export const gallerySlides: GallerySlide[] = [
-  { src: portrait, alt: "Portrait — model in couture against a paper backdrop" },
   { src: electricSpark, alt: "Concept — a lightbulb bursting with multicoloured sparks" },
+  { src: portrait, alt: "Portrait — model in couture against a paper backdrop" },
   { src: omotesando06, alt: "Architecture — minimalist retail interior in oak" },
   { src: kitzbuhel, alt: "Architecture — fluted timber wall and concrete hall" },
   { src: omotesando08, alt: "Product — sculptural bench and stone plinth" },

@@ -71,9 +71,10 @@
 
     p {
       font-size: 0.85rem;
-      line-height: 1.5;
-      color: var(--color-muted);
-      max-width: 40ch;
+      line-height: 1.55;
+      // Same colours as the trigger above.
+      color: var(--color-ink);
+      max-width: 85%;
     }
   }
 }

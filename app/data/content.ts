@@ -10,35 +10,40 @@ export const navLinks: NavLink[] = [
 
 export const contactLink: NavLink = { label: "Contact", href: "/contact" };
 
-// Portfolio accordion (the "About Me" right-hand square). Each category
-// expands to a dummy quote for now.
+// "About" accordion (the home right-hand square). Each section expands to a
+// short description of how the studio works.
 export type PortfolioCategory = { title: string; quote: string };
 
 export const portfolioCategories: PortfolioCategory[] = [
   {
-    title: "Portraits",
+    title: "Collaboration",
     quote:
-      "“A portrait is not made in the camera but on either side of it.” Every face carries a story worth holding still.",
+      "I reach out directly to people whose work inspires me — for collaborations, for promotion, and to understand the real challenges of what they do. The ambition: useful products, built together with the people who use them.",
   },
   {
-    title: "Architecture and Interiors",
+    title: "Design & branding",
     quote:
-      "“Space is the breath of art.” I look for the quiet geometry that turns a room into a feeling.",
+      "Visual identity and graphic design that give a project its character — from logo and palette to how every page looks and feels.",
   },
   {
-    title: "Product Photography",
+    title: "Flexible content",
     quote:
-      "“The detail is not the detail. It makes the design.” Light, texture and patience make an object sing.",
+      "Update your own content, simply and independently — without depending on someone every time something changes.",
   },
   {
-    title: "Lifestyle and Travel",
+    title: "Fast navigation",
     quote:
-      "“We travel not to escape life, but for life not to escape us.” I chase the in-between moments.",
+      "Clear, fast navigation designed mobile-first — fluid even with galleries and heavy media.",
+  },
+  {
+    title: "Automation",
+    quote:
+      "The admin work that eats your time, simplified: bookings and forms, communicating and delivering to clients, keeping the portfolio current, generating .pdf contracts, and more.",
   },
 ];
 
 export const aboutBlurb =
-  "In the tapestry of life, my camera tells rich stories, capturing the heart of every moment. I bring your world into sharp focus, with a touch of artistry, precision, and utmost care";
+  "An early-stage web studio working alongside the local creative scene — architecture, design, photography, events, education. Building useful products, together with the people who use them.";
 
 // Generic panels for the other nav routes. They reuse the same right-hand
 // square, swapping the heading + a short list of dummy entries.
@@ -86,12 +91,12 @@ export const panels: Record<string, PanelContent> = {
   contact: {
     heading: "Contact",
     entries: [
-      { title: "Studio", body: "12 Paper Lane, Lisbon — by appointment." },
-      { title: "Email", body: "hello@sophiamitchell.photo" },
-      { title: "Phone", body: "+351 912 345 678" },
-      { title: "Instagram", body: "@sophia.mitchell" },
+      { title: "WhatsApp", body: "The easiest way — a short, no-pressure chat." },
+      { title: "Email", body: "salut@uxstudiosibiu.ro" },
+      { title: "Area", body: "Sibiu — and online, wherever it makes sense." },
+      { title: "Instagram", body: "@ux.studio.sibiu" },
     ],
     blurb:
-      "Available worldwide for commissions and collaborations. I usually reply within a day.",
+      "I’d love to understand how your work flows and what could make it easier. Let’s talk.",
   },
 };

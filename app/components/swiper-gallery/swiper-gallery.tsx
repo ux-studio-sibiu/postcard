@@ -40,6 +40,13 @@ export function SwiperGallery() {
   // already started it's left to finish.
   const handleLeave = () => clearIntent();
 
+  // Tap (mobile) fires immediately — a tap is intentional, so skip the
+  // hover-intent delay. Swiper only emits click on a tap, not on a swipe.
+  const handleTap = () => {
+    clearIntent();
+    setGlitching(true);
+  };
+
   return (
     <div className="nsc-swiper-gallery">
       {/* Hover logic lives on the image stage only, so the pagination dots
@@ -48,6 +55,7 @@ export function SwiperGallery() {
         className={`gallery-stage${glitching ? " is-glitching" : ""}`}
         onMouseEnter={handleEnter}
         onMouseLeave={handleLeave}
+        onClick={handleTap}
         onAnimationEnd={() => setGlitching(false)}
       >
         <Swiper
