@@ -1,0 +1,46 @@
+@use "_breakpoints" as *;
+@use "_modern-normalize" as *;
+@use "_utils" as *;
+
+:root {
+  // Monochrome palette pulled from the reference design
+  --color-bg: #ffffff;
+  --color-ink: #1c1c1c;
+  --color-muted: #6f6f6f;
+  --color-line: #1c1c1c;
+
+  // A clean Helvetica-style grotesque, matching the reference
+  --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+html {
+  min-height: 100%;
+  width: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  width: 100%;
+  background-color: #000000;
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  // Centre the content block vertically as well as horizontally.
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-container {
+  background-color: var(--color-bg);
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2.5rem;
+  padding-top: 0rem;
+
+  @media (max-width: 768px) {
+    padding: 3rem 1.25rem;
+  }
+}

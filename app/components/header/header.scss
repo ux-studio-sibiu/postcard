@@ -1,0 +1,58 @@
+.nsc-header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 1.75rem 0;
+
+  .header-brand {
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+
+  .header-nav {
+    display: flex;
+    gap: 2.25rem;
+    margin-left: auto;
+  }
+
+  .nav-link,
+  .header-contact {
+    font-size: 0.85rem;
+    color: var(--color-ink);
+    padding-bottom: 2px;
+    border-bottom: 1px solid transparent;
+    white-space: nowrap;
+    transition: border-color 0.2s ease;
+
+    &:hover {
+      border-bottom-color: var(--color-line);
+    }
+
+    &.is-active {
+      border-bottom-color: var(--color-ink);
+    }
+  }
+
+  // "Contact" sits hard against the right edge, detached from the nav cluster.
+  .header-contact {
+    margin-left: 4.5rem;
+  }
+
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    .header-nav {
+      gap: 1.25rem;
+      order: 3;
+      margin-left: 0;
+      width: 100%;
+    }
+
+    .header-contact {
+      margin-left: auto;
+    }
+  }
+}

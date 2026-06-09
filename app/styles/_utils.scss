@@ -1,0 +1,21 @@
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+.object-cover {
+  object-fit: cover;
+}
+
+.object-contain {
+  object-fit: contain;
+}

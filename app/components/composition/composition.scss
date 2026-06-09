@@ -1,0 +1,30 @@
+.nsc-composition {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.75rem;
+  align-items: start;
+
+  .composition-box {
+    // Equal squares, side by side.
+    aspect-ratio: 1 / 1;
+    min-width: 0;
+  }
+
+  .composition-right {
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+
+    .composition-box {
+      aspect-ratio: auto;
+    }
+
+    .composition-left {
+      aspect-ratio: 1 / 1;
+    }
+  }
+}
