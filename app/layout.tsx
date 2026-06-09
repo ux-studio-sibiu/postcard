@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
+import { Lexend } from "next/font/google";
 import { Header } from "@/app/components/header/header";
 import "@/app/styles/globals.scss";
+
+const lexend = Lexend({
+  subsets: ["latin"],
+  variable: "--font-lexend",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Turcanu Razvan — Portfolio",
@@ -13,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" data-scroll-behavior="smooth">
+    <html lang="en" data-scroll-behavior="smooth" className={lexend.variable}>
       <body>
         <div className="page-container">
           <Header />

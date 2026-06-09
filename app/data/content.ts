@@ -21,9 +21,9 @@ export const portfolioCategories: PortfolioCategory[] = [
       "I reach out directly to people whose work inspires me — for collaborations, for promotion, and to understand the real challenges of what they do. The ambition: useful products, built together with the people who use them.",
   },
   {
-    title: "Design & branding",
+    title: "Design",
     quote:
-      "Visual identity and graphic design that give a project its character — from logo and palette to how every page looks and feels.",
+      "Less, but better. Minimal, functional design where every element earns its place — restraint over decoration, clarity over clutter. The result feels calm, confident, and effortless to use.",
   },
   {
     title: "Flexible content",

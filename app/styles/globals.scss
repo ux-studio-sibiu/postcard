@@ -9,8 +9,8 @@
   --color-muted: #6f6f6f;
   --color-line: #1c1c1c;
 
-  // A clean Helvetica-style grotesque, matching the reference
-  --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  // Lexend (loaded via next/font in layout.tsx), Helvetica as fallback.
+  --font-sans: var(--font-lexend), "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 html {
