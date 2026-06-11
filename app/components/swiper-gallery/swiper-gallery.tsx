@@ -6,56 +6,38 @@ import "swiper/css/pagination";
 import "./swiper-gallery.scss";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState, type MouseEvent } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectFade, Pagination } from "swiper/modules";
+import type { Swiper as SwiperType } from "swiper";
 import { gallerySlides } from "@/app/data/gallery";
 
-// Hover intent: only fire the glitch once the pointer has lingered this long,
-// so a quick pass-through doesn't trigger it.
-const HOVER_INTENT_MS = 400;
-
 export function SwiperGallery() {
-  // One-shot colour glitch. The class is cleared when the animation ends so
-  // re-entering replays it.
+  // One-shot colour glitch, fired on click. The class is cleared when the
+  // animation ends so a subsequent click replays it.
   const [glitching, setGlitching] = useState(false);
-  const intentTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const swiperRef = useRef<SwiperType | null>(null);
 
-  const clearIntent = () => {
-    if (intentTimer.current) {
-      clearTimeout(intentTimer.current);
-      intentTimer.current = null;
-    }
+  const triggerGlitch = () => setGlitching(true);
+
+  // Side click zones step the carousel. stopPropagation keeps them from also
+  // firing the centre click-to-glitch.
+  const goPrev = (e: MouseEvent) => {
+    e.stopPropagation();
+    swiperRef.current?.slidePrev();
   };
-
-  // Cancel a pending timer if the component unmounts mid-wait.
-  useEffect(() => clearIntent, []);
-
-  const handleEnter = () => {
-    clearIntent();
-    intentTimer.current = setTimeout(() => setGlitching(true), HOVER_INTENT_MS);
-  };
-
-  // Leaving during the intent window cancels the trigger; if the glitch has
-  // already started it's left to finish.
-  const handleLeave = () => clearIntent();
-
-  // Tap (mobile) fires immediately — a tap is intentional, so skip the
-  // hover-intent delay. Swiper only emits click on a tap, not on a swipe.
-  const handleTap = () => {
-    clearIntent();
-    setGlitching(true);
+  const goNext = (e: MouseEvent) => {
+    e.stopPropagation();
+    swiperRef.current?.slideNext();
   };
 
   return (
     <div className="nsc-swiper-gallery">
-      {/* Hover logic lives on the image stage only, so the pagination dots
-          (a sibling, below) never trigger the glitch. */}
+      {/* Click anywhere on the stage fires the glitch; the edge nav zones
+          stopPropagation so they only navigate. */}
       <div
         className={`gallery-stage${glitching ? " is-glitching" : ""}`}
-        onMouseEnter={handleEnter}
-        onMouseLeave={handleLeave}
-        onClick={handleTap}
+        onClick={triggerGlitch}
         onAnimationEnd={() => setGlitching(false)}
       >
         <Swiper
@@ -65,6 +47,7 @@ export function SwiperGallery() {
           fadeEffect={{ crossFade: true }}
           loop
           slidesPerView={1}
+          onSwiper={(s) => (swiperRef.current = s)}
           pagination={{ el: ".gallery-pagination", clickable: true }}
         >
           {gallerySlides.map((slide, idx) => (
@@ -81,6 +64,21 @@ export function SwiperGallery() {
             </SwiperSlide>
           ))}
         </Swiper>
+
+        {/* 15%-wide click zones on each edge that step the carousel, with
+            left/right arrow cursors. */}
+        <button
+          type="button"
+          className="gallery-nav prev"
+          aria-label="Previous image"
+          onClick={goPrev}
+        />
+        <button
+          type="button"
+          className="gallery-nav next"
+          aria-label="Next image"
+          onClick={goNext}
+        />
       </div>
 
       <div className="gallery-pagination" />

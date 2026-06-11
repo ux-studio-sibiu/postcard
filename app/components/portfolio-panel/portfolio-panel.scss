@@ -11,10 +11,55 @@
     letter-spacing: -0.02em;
     margin-bottom: 1.5rem;
     overflow: hidden;
+    // Title and footer keep their size; the accordion absorbs the overflow.
+    flex-shrink: 0;
   }
 
-  // Push the contact + blurb to the bottom of the square, as in the reference.
+  // Take the space left between title and footer, and scroll when the
+  // expanded sections need more than that. min-height: 0 lets a flex item
+  // shrink below its content so the overflow becomes a scroll, not a clip.
+  // Wrapper takes the space between title and footer; the inner <ul> scrolls
+  // and hosts the custom scroll indicator.
+  .nsc-accordion-wrap {
+    position: relative;
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+
+  .nsc-accordion {
+    height: 100%;
+    overflow-y: auto;
+
+    // Hide the native scrollbar entirely — we draw our own indicator instead,
+    // so there are no native arrow buttons (Chrome's Fluent scrollbar can't be
+    // made to drop them via CSS).
+    scrollbar-width: none; // Firefox
+    &::-webkit-scrollbar {
+      display: none; // Chrome / Edge / Safari
+    }
+  }
+
+  // Slim custom scroll indicator, parked in the right gutter. The content stays
+  // full-width (aligned with the footer); only this thin line sits outside it,
+  // and only while the content overflows (toggled by .is-visible from JS).
+  .accordion-scrollbar {
+    position: absolute;
+    right: -1.25rem;
+    width: 3px;
+    border-radius: 3px;
+    background: #9a9a9a;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+
+    &.is-visible {
+      opacity: 1;
+    }
+  }
+
+  // Contact + blurb pinned to the bottom of the square, as in the reference.
   .portfolio-footer {
+    flex-shrink: 0;
     margin-top: auto;
     padding-top: 2rem;
     text-align: center;
@@ -28,6 +73,7 @@
 
     span {
       margin-left: 0.35rem;
+      color: #9a9a9a;
     }
   }
 

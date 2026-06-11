@@ -26,9 +26,9 @@ export const portfolioCategories: PortfolioCategory[] = [
       "Less, but better. Minimal, functional design where every element earns its place — restraint over decoration, clarity over clutter. The result feels calm, confident, and effortless to use.",
   },
   {
-    title: "Flexible content",
+    title: "Content control",
     quote:
-      "Update your own content, simply and independently — without depending on someone every time something changes.",
+      "Update your own content, simply and independently.",
   },
   {
     title: "Fast navigation",

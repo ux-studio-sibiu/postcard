@@ -4,8 +4,34 @@
   height: 100%;
 
   .gallery-stage {
+    position: relative;
     width: 100%;
     height: 100%;
+  }
+
+  // 15%-wide edge zones that step the carousel. Custom left/right arrow
+  // cursors (white chevron with a soft dark halo for contrast on any frame),
+  // falling back to the resize cursors if the SVG cursor is unsupported.
+  .gallery-nav {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 15%;
+    z-index: 5;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+
+    &.prev {
+      left: 0;
+      cursor: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='28'%20height='28'%20viewBox='0%200%2028%2028'%3E%3Cpath%20d='M18%207L11%2014L18%2021'%20fill='none'%20stroke='black'%20stroke-width='4.5'%20stroke-linecap='round'%20stroke-linejoin='round'%20opacity='0.35'/%3E%3Cpath%20d='M18%207L11%2014L18%2021'%20fill='none'%20stroke='white'%20stroke-width='2.5'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E") 14 14, w-resize;
+    }
+
+    &.next {
+      right: 0;
+      cursor: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='28'%20height='28'%20viewBox='0%200%2028%2028'%3E%3Cpath%20d='M10%207L17%2014L10%2021'%20fill='none'%20stroke='black'%20stroke-width='4.5'%20stroke-linecap='round'%20stroke-linejoin='round'%20opacity='0.35'/%3E%3Cpath%20d='M10%207L17%2014L10%2021'%20fill='none'%20stroke='white'%20stroke-width='2.5'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E") 14 14, e-resize;
+    }
   }
 
   .gallery-swiper {
@@ -16,6 +42,9 @@
   .swiper-slide {
     position: relative;
     overflow: hidden;
+    // Custom crosshair matching the nav arrows: white with a soft dark halo,
+    // same 28px size; falls back to the native crosshair.
+    cursor: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='28'%20height='28'%20viewBox='0%200%2028%2028'%3E%3Cpath%20d='M14%203V25M3%2014H25'%20fill='none'%20stroke='black'%20stroke-width='4.5'%20stroke-linecap='round'%20opacity='0.35'/%3E%3Cpath%20d='M14%203V25M3%2014H25'%20fill='none'%20stroke='white'%20stroke-width='2.5'%20stroke-linecap='round'/%3E%3C/svg%3E") 14 14, crosshair;
   }
 
   img {
