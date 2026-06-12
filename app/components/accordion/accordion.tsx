@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import "./accordion.scss";
 
-export type AccordionItem = { title: string; content: string };
+export type AccordionItem = { title: string; html: string };
 
 export function Accordion({ items }: { items: AccordionItem[] }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -56,7 +56,7 @@ export function Accordion({ items }: { items: AccordionItem[] }) {
                 <span className="accordion-icon" aria-hidden="true" />
               </button>
               <div className="accordion-panel" hidden={!open}>
-                <p>{item.content}</p>
+                <p dangerouslySetInnerHTML={{ __html: item.html }} />
               </div>
             </li>
           );
