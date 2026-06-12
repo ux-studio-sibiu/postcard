@@ -16,6 +16,11 @@ export type PortfolioCategory = { title: string; quote: string };
 
 export const portfolioCategories: PortfolioCategory[] = [
   {
+    title: "Services",
+    quote:
+      "Fast, functional websites for creative industries. — functional —minimal design —performance focus -—full content control",
+  },
+  {
     title: "Collaboration",
     quote:
       "I reach out directly to people whose work inspires me — for collaborations, for promotion, and to understand the real challenges of what they do. The ambition: useful products, built together with the people who use them.",
@@ -43,7 +48,7 @@ export const portfolioCategories: PortfolioCategory[] = [
 ];
 
 export const aboutBlurb =
-  "An early-stage web studio working alongside the local creative scene — architecture, design, photography, events, education. Building useful products, together with the people who use them.";
+  "Crafting websites for creative industries: functional, minimal design, performance, and full content control";
 
 // Generic panels for the other nav routes. They reuse the same right-hand
 // square, swapping the heading + a short list of dummy entries.

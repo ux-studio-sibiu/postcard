@@ -8,6 +8,7 @@ import omotesando06 from "@/images/06-251104-jp-web-JS-Omotesando-new-edit.jpg";
 import omotesando08 from "@/images/08-251104-jp-web-JS-Omotesando-new-edit.jpg";
 import kitzbuhel from "@/images/251028-Kiotzbuhel-Updated-Edit-10.jpg";
 import electricSpark from "@/images/electric-creativity-spark-stockcake.webp";
+import casedeschise from "@/images/2.webp";
 
 export type GallerySlide = {
   src: StaticImageData;
@@ -20,4 +21,5 @@ export const gallerySlides: GallerySlide[] = [
   { src: omotesando06, alt: "Architecture — minimalist retail interior in oak" },
   { src: kitzbuhel, alt: "Architecture — fluted timber wall and concrete hall" },
   { src: omotesando08, alt: "Product — sculptural bench and stone plinth" },
+  { src: casedeschise, alt: "case-deschise" },
 ];
