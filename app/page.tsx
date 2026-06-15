@@ -1,8 +1,8 @@
 import { Composition } from "@/app/components/composition/composition";
 import { SwiperGallery } from "@/app/components/swiper-gallery/swiper-gallery";
-import { PortfolioPanel } from "@/app/components/portfolio-panel/portfolio-panel";
+import { AboutPanel } from "@/app/components/about-panel/about-panel";
 
-// "About Me" — the home view from the reference.
+
 export default function Home() {
-  return <Composition left={<SwiperGallery />} right={<PortfolioPanel />} />;
+  return <Composition left={<SwiperGallery />} right={<AboutPanel />} />;
 }

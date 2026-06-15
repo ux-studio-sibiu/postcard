@@ -17,11 +17,7 @@ export function AccordionItem({ title, children, isOpen, onToggle }: { title: st
   );
 }
 
-export function Accordion({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export function Accordion({ children }: { children: React.ReactNode }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const scrollRef = useRef<HTMLUListElement>(null);
@@ -54,8 +50,8 @@ export function Accordion({
   const childrenArray = Children.toArray(children);
 
   return (
-    <div className="nsc-accordion-wrap">
-      <ul className="nsc-accordion" ref={scrollRef} onScroll={updateThumb}>
+    <div className="nsc-accordion">
+      <ul className="accordion-list" ref={scrollRef} onScroll={updateThumb}>
         {childrenArray.map((child, idx) =>
           cloneElement(child as React.ReactElement, {
             isOpen: openIndex === idx,

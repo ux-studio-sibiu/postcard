@@ -96,3 +96,46 @@ body {
     transform: none;
   }
 }
+
+// Page panel styles — shared across pages
+.page-title {
+  font-size: clamp(2rem, 12vw, 4.5rem);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.page-footer {
+  flex-shrink: 0;
+  margin-top: auto;
+  padding-top: 2rem;
+  text-align: center;
+}
+
+.page-contact {
+  display: inline-block;
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+
+  span {
+    margin-left: 0.35rem;
+    color: #9a9a9a;
+  }
+}
+
+.page-blurb {
+  max-width: 75ch;
+  margin: 0 auto;
+  font-size: .75rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .page-footer {
+    margin-top: 2.5rem;
+  }
+}
