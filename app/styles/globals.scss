@@ -98,6 +98,13 @@ body {
 }
 
 // Page panel styles — shared across pages
+.page-panel {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
 .page-title {
   font-size: clamp(2rem, 12vw, 4.5rem);
   font-weight: 400;

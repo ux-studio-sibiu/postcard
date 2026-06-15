@@ -2,29 +2,31 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.75rem;
-  align-items: start;
+  align-items: stretch;
 
   .composition-box {
-    // Equal squares, side by side.
-    aspect-ratio: 1 / 1;
     min-width: 0;
+  }
+
+  .composition-left {
+    // Square image — defines the grid row height.
+    aspect-ratio: 1 / 1;
+    align-self: start;
   }
 
   .composition-right {
     display: flex;
     flex-direction: column;
+    // Stretches to the row height set by the square on the left, giving its
+    // flex children a definite height to fill. Deriving the height from the
+    // grid row (definite on first paint) rather than from aspect-ratio on this
+    // flex container avoids the footer landing at content height on direct loads.
   }
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
     gap: 5rem;
-
-    .composition-box {
-      aspect-ratio: auto;
-    }
-
-    .composition-left {
-      aspect-ratio: 1 / 1;
-    }
+    // Single column: each box owns its row. The left keeps its square via the
+    // rule above; the right sizes to its content.
   }
 }
