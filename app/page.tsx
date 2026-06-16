@@ -18,7 +18,7 @@ export default function Home() {
             </p>
           }
         >
-          <AccordionItem title="Fast websites">Optimized for speed and performance across all devices.</AccordionItem>
+          <AccordionItem title="Unique digital solutions">Optimized for speed and performance across all devices.</AccordionItem>
           
           
           <AccordionItem title="Complete content control">Manage your content independently without technical barriers.</AccordionItem>
