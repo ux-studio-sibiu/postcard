@@ -2,31 +2,34 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.75rem;
-  align-items: stretch;
+  align-items: start;
 
   .composition-box {
-    min-width: 0;
-  }
-
-  .composition-left {
-    // Square image — defines the grid row height.
+    // Equal squares, side by side.
     aspect-ratio: 1 / 1;
-    align-self: start;
+    min-width: 0;
   }
 
   .composition-right {
     display: flex;
     flex-direction: column;
-    // Stretches to the row height set by the square on the left, giving its
-    // flex children a definite height to fill. Deriving the height from the
-    // grid row (definite on first paint) rather than from aspect-ratio on this
-    // flex container avoids the footer landing at content height on direct loads.
+    // Bounded to the square (fixed height, content-independent) so the accordion
+    // scrolls internally instead of growing the panel and pushing the footer down.
+    min-height: 0;
   }
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
     gap: 5rem;
-    // Single column: each box owns its row. The left keeps its square via the
-    // rule above; the right sizes to its content.
+
+    // Single column: boxes size to their content (page scrolls); the image keeps
+    // its square.
+    .composition-box {
+      aspect-ratio: auto;
+    }
+
+    .composition-left {
+      aspect-ratio: 1 / 1;
+    }
   }
 }

@@ -10,7 +10,9 @@ export default function ContactPage() {
       right={
         <Panel
           heading="Contact"
-          blurb="I'd love to understand how your work flows and what could make it easier. Let's talk."
+          blurb="Every project is different, shaped by its context, ambitions and people. 
+          We'd love to learn about your work, understand how things currently function, 
+          and explore a fresh perspective."
         >
           <AccordionItem title="WhatsApp">The easiest way — a short, no-pressure chat.</AccordionItem>
           <AccordionItem title="Email">salut@uxstudiosibiu.ro</AccordionItem>

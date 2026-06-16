@@ -2,11 +2,11 @@
   position: relative;
   flex: 1 1 auto;
   min-height: 0;
-  overflow-y: auto;
-  scrollbar-width: none;
-  &::-webkit-scrollbar {
-    display: none;
-  }
+  // Non-scrolling wrapper: holds the scroller (.accordion-list) and the thumb.
+  // Keeping it static means the absolutely-positioned thumb stays put while the
+  // list scrolls inside it.
+  display: flex;
+  flex-direction: column;
 
   .accordion-scrollbar {
     position: absolute;
@@ -24,6 +24,16 @@
   }
 
   .accordion-list {
+    // The actual scroll container (matches scrollRef in accordion.tsx). Native
+    // scrollbar hidden — the custom thumb is the only visual indicator.
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
     list-style: none;
     padding: 0;
     margin: 0;

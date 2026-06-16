@@ -44,26 +44,33 @@ export type GallerySlide = {
   caption?: ReactNode;
   // CSS class applied to the slide — drives its click animation ("anim-glitch"
   // the punchy strobe, "anim-reveal" the gentle fade, "anim-fire" the flickering
-  // firelight, "anim-simple" the same flicker without the warm tint) or any custom
-  // class you define in swiper-gallery.scss. Defaults to "anim-glitch".
+  // firelight, "anim-simple" the same flicker without the warm tint, "anim-none"
+  // full colour with no animation) or any custom class you define in
+  // swiper-gallery.scss. Defaults to "anim-glitch".
   cssClass?: string;
 };
-// put romanian dicaritics here:
-// Reused link for casedeschise.ro captions — keeps the markup tidy.
-const caseDeschiseLink = <a href="https://casedeschise.ro" target="_blank" rel="noopener noreferrer">www.casedeschise.ro : </a>;
 
 export const defaultGallery: GallerySlide[] = [
   { src: electricSpark, alt: "" },
-  { src: fire, alt: "casedeschise.ro: Coliba Poplăcean, Râul Sadului", caption: <>{caseDeschiseLink} <span>Coliba Poplăcean, Râul Săduului</span></>, cssClass: "anim-fire" },
-  { src: window, alt: "casedeschise.ro: Coliba Poplăcean, Râul Sadului", caption: <>{caseDeschiseLink}: Coliba Poplăcean, Râul Săduului</>, cssClass: "anim-simple" },
-  { src: zestrea2, alt: "casedeschise.ro: Magazinul Zestrea", caption: <>{caseDeschiseLink}: Magazinul Zestrea</>, cssClass: "anim-simple" },
-  { src: kitzbuhel, alt: "Fluted timber wall and concrete hall" },
-  { src: caseDeschiseCover, alt: "Case Deschise" },
+
+  { src: fire, alt: "casedeschise.ro: Coliba Poplăcean, Râul Sadului", 
+    caption: <><a href="https://casedeschise.ro/sibiu/coliba-poplacean-tara-colibelor" target="_blank" rel="noopener noreferrer">www.casedeschise.ro : </a> <span>Coliba Poplăcean, Râul Săduului, 2026</span></>,
+    cssClass: "anim-fire" },
+
+  { src: flowers, alt: "Clasa Zero — flowers puzzle", cssClass: "anim-none" },
+
+  // { src: window, alt: "casedeschise.ro: Coliba Poplăcean, Râul Sadului", caption: <>{caseDeschiseLink}: Coliba Poplăcean, Râul Săduului</>, cssClass: "anim-simple" },
+  { src: zestrea2, alt: "casedeschise.ro: Magazinul Zestrea", 
+    caption: <><a href="https://casedeschise.ro/sibiu/fresca-magazin-zestrea" target="_blank" rel="noopener noreferrer">www.casedeschise.ro : </a>: Magazinul Zestrea, 2025</>, 
+    cssClass: "anim-simple" },
+  
+  // { src: kitzbuhel, alt: "Fluted timber wall and concrete hall" },
+  { src: caseDeschiseCover, alt: "Case Deschise", cssClass: "anim-none" },
 ];
 
 export const caseDeschiseGallery: GallerySlide[] = [
-  { src: zestrea, alt: "Frescă magazin Zestrea — artă veche și podoabe", cssClass: "anim-simple" },
   { src: scara, alt: "Primăria Municipiului Sibiu", cssClass: "anim-fire" },
+  { src: zestrea, alt: "Frescă magazin Zestrea — artă veche și podoabe", cssClass: "anim-simple" },
   { src: colibaPoplacean10, alt: "Coliba Poplăcean", cssClass: "anim-simple" },
   { src: colibaPoplacean3, alt: "Coliba Poplăcean", cssClass: "anim-simple" },
   { src: colibaTaroi5, alt: "Coliba Tăroi", cssClass: "anim-simple" },

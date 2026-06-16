@@ -83,6 +83,11 @@
     filter: grayscale(1);
   }
 
+  // Opt a frame out entirely: full colour, no greyscale, no click animation.
+  .swiper-slide.anim-none img {
+    filter: none;
+  }
+
   // On click the active frame plays its chosen colour animation, then snaps
   // back to greyscale. Only the active slide animates (per-image choice via the
   // anim- class on the slide); off-screen slides stay still.

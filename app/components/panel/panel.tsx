@@ -10,9 +10,7 @@ export function Panel({ heading, children, blurb, onActiveChange }: { heading: s
       <Accordion onActiveChange={onActiveChange}>{children}</Accordion>
 
       <div className="page-footer">
-        <Link href="/contact" className="page-contact">
-          Contact <span aria-hidden="true">&rarr;</span>
-        </Link>
+        <Link href="/contact" className="page-contact"> Contact <span aria-hidden="true">&rarr;</span></Link>
         <p className="page-blurb">{blurb}</p>
       </div>
     </div>
