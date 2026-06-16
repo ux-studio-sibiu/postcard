@@ -1,9 +1,12 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState, Children, cloneElement } from "react";
+import type { GallerySlide } from "@/app/data/gallery";
 import "./accordion.scss";
 
-export function AccordionItem({ title, children, isOpen, onToggle }: { title: string; children: React.ReactNode; isOpen?: boolean; onToggle?: () => void }) {
+// `gallery` is carried by the item but not rendered here — the parent Accordion
+// reads it off the open item to drive an external gallery (see PortfolioShowcase).
+export function AccordionItem({ title, children, isOpen, onToggle }: { title: string; children: React.ReactNode; isOpen?: boolean; onToggle?: () => void; gallery?: GallerySlide[] }) {
   return (
     <li className={`accordion-item${isOpen ? " is-open" : ""}`}>
       <button type="button" className="accordion-trigger" aria-expanded={isOpen} onClick={onToggle}>
@@ -17,7 +20,7 @@ export function AccordionItem({ title, children, isOpen, onToggle }: { title: st
   );
 }
 
-export function Accordion({ children }: { children: React.ReactNode }) {
+export function Accordion({ children, onActiveChange }: { children: React.ReactNode; onActiveChange?: (gallery: GallerySlide[] | null) => void }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const scrollRef = useRef<HTMLUListElement>(null);
@@ -55,7 +58,12 @@ export function Accordion({ children }: { children: React.ReactNode }) {
         {childrenArray.map((child, idx) =>
           cloneElement(child as React.ReactElement, {
             isOpen: openIndex === idx,
-            onToggle: () => setOpenIndex(openIndex === idx ? null : idx),
+            onToggle: () => {
+              const next = openIndex === idx ? null : idx;
+              setOpenIndex(next);
+              const active = next === null ? null : (childrenArray[next] as React.ReactElement<{ gallery?: GallerySlide[] }>).props.gallery ?? null;
+              onActiveChange?.(active);
+            },
           } as any)
         )}
       </ul>

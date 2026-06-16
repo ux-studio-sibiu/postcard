@@ -10,9 +10,9 @@ import { useRef, useState, type MouseEvent } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectFade, Pagination } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
-import { gallerySlides } from "@/app/data/gallery";
+import { defaultGallery, type GallerySlide } from "@/app/data/gallery";
 
-export function SwiperGallery() {
+export function SwiperGallery({ slides = defaultGallery }: { slides?: GallerySlide[] }) {
   // One-shot colour glitch, fired on click. The class is cleared when the
   // animation ends so a subsequent click replays it.
   const [glitching, setGlitching] = useState(false);
@@ -41,6 +41,7 @@ export function SwiperGallery() {
         onAnimationEnd={() => setGlitching(false)}
       >
         <Swiper
+          key={slides[0]?.src.src}
           className="gallery-swiper"
           modules={[EffectFade, Pagination]}
           effect="fade"
@@ -50,7 +51,7 @@ export function SwiperGallery() {
           onSwiper={(s) => (swiperRef.current = s)}
           pagination={{ el: ".gallery-pagination", clickable: true }}
         >
-          {gallerySlides.map((slide, idx) => (
+          {slides.map((slide, idx) => (
             <SwiperSlide key={idx}>
               <Image
                 src={slide.src}
