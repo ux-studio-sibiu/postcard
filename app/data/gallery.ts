@@ -10,10 +10,12 @@ import kitzbuhel from "@/images/251028-Kiotzbuhel-Updated-Edit-10.jpg";
 import caseDeschiseCover from "@/images/case-deschise.jpg";
 import electricSpark from "@/images/electric-creativity-spark-stockcake.webp";
 import fire from "@/images/casedeschise-fire.jpg";
+import window from "@/images/casedeschise-window.jpg";
+import zestrea2 from "@/images/casedeschise-zestrea.jpg";
 
 // casedeschise.ro
 import zestrea from "@/images/case-deschise/5. Frescă magazin Zestrea - Artă veche și podoabe compressed.jpg";
-import primariaSibiu from "@/images/case-deschise/7. Primăria Municipiului Sibiu compressed.jpg";
+import scara from "@/images/case-deschise/7. Primăria Municipiului Sibiu compressed.jpg";
 import colibaPoplacean10 from "@/images/case-deschise/Coliba Poplăcean (10).jpg";
 import colibaPoplacean3 from "@/images/case-deschise/Coliba Poplăcean (3).jpg";
 import colibaTaroi5 from "@/images/case-deschise/Coliba Tăroi (5).jpg";
@@ -35,26 +37,34 @@ import flowers from "@/images/clasa-zero/flowers-2.jpg";
 export type GallerySlide = {
   src: StaticImageData;
   alt: string;
+  // CSS class applied to the slide — drives its click animation ("anim-glitch"
+  // the punchy strobe, "anim-reveal" the gentle fade, "anim-fire" the flickering
+  // firelight, "anim-simple" the same flicker without the warm tint) or any custom
+  // class you define in swiper-gallery.scss. Defaults to "anim-glitch".
+  cssClass?: string;
 };
 
 export const defaultGallery: GallerySlide[] = [
   { src: electricSpark, alt: "A lightbulb bursting with multicoloured sparks" },
+  { src: fire, alt: "casedeschise.ro: Coliba Poplacean, Raul Sadului", cssClass: "anim-fire" },
+  { src: window, alt: "casedeschise.ro: Coliba Poplacean, Raul Sadului", cssClass: "anim-simple" },
+  { src: zestrea2, alt: "casedeschise.ro: Magazinul Zestrea", cssClass: "anim-simple" },
   { src: kitzbuhel, alt: "Fluted timber wall and concrete hall" },
   { src: caseDeschiseCover, alt: "Case Deschise" },
-  { src: fire, alt: "casedeschise.ro: Coliba Poplacean, Raul Sadului" },
+  
 ];
 
 export const caseDeschiseGallery: GallerySlide[] = [
-  { src: zestrea, alt: "Frescă magazin Zestrea — artă veche și podoabe" },
-  { src: primariaSibiu, alt: "Primăria Municipiului Sibiu" },
-  { src: colibaPoplacean10, alt: "Coliba Poplăcean" },
-  { src: colibaPoplacean3, alt: "Coliba Poplăcean" },
-  { src: colibaTaroi5, alt: "Coliba Tăroi" },
+  { src: zestrea, alt: "Frescă magazin Zestrea — artă veche și podoabe", cssClass: "anim-simple"  },
+  { src: scara, alt: "Primăria Municipiului Sibiu", cssClass: "anim-fire" },
+  { src: colibaPoplacean10, alt: "Coliba Poplăcean", cssClass: "anim-simple"  },
+  { src: colibaPoplacean3, alt: "Coliba Poplăcean", cssClass: "anim-simple"  },
+  { src: colibaTaroi5, alt: "Coliba Tăroi", cssClass: "anim-simple"  },
 ];
 
 export const slowDaysGallery: GallerySlide[] = [
-  { src: slowDays1, alt: "Slow Days Outside — kids activity" },
-  { src: slowDays2, alt: "Slow Days Outside — kids activity" },
+  { src: slowDays1, alt: "Slow Days Outside — kids activity", cssClass: "anim-simple"  },
+  { src: slowDays2, alt: "Slow Days Outside — kids activity", cssClass: "anim-simple"  },
 ];
 
 export const arhitecturalGallery: GallerySlide[] = [
@@ -63,8 +73,8 @@ export const arhitecturalGallery: GallerySlide[] = [
 ];
 
 export const clasaZeroGallery: GallerySlide[] = [
-  { src: balloons, alt: "Clasa Zero — balloons puzzle" },
-  { src: cars1, alt: "Clasa Zero — cars puzzle" },
-  { src: cars2, alt: "Clasa Zero — cars puzzle" },
-  { src: flowers, alt: "Clasa Zero — flowers puzzle" },
+  { src: balloons, alt: "Clasa Zero — balloons puzzle", cssClass: "anim-fire" },
+  { src: cars1, alt: "Clasa Zero — cars puzzle", cssClass: "anim-fire"},
+  { src: cars2, alt: "Clasa Zero — cars puzzle", cssClass: "anim-simple" },
+  { src: flowers, alt: "Clasa Zero — flowers puzzle", cssClass: "anim-simple" },
 ];

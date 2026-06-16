@@ -13,12 +13,14 @@ import type { Swiper as SwiperType } from "swiper";
 import { defaultGallery, type GallerySlide } from "@/app/data/gallery";
 
 export function SwiperGallery({ slides = defaultGallery }: { slides?: GallerySlide[] }) {
-  // One-shot colour glitch, fired on click. The class is cleared when the
-  // animation ends so a subsequent click replays it.
-  const [glitching, setGlitching] = useState(false);
+  // One-shot colour animation, fired on click. The class is cleared when the
+  // animation ends so a subsequent click replays it. Each slide picks its own
+  // animation (glitch / reveal) via its anim- class; only the active slide
+  // animates, so a single animationEnd reliably clears the flag.
+  const [animating, setAnimating] = useState(false);
   const swiperRef = useRef<SwiperType | null>(null);
 
-  const triggerGlitch = () => setGlitching(true);
+  const triggerAnim = () => setAnimating(true);
 
   // Side click zones step the carousel. stopPropagation keeps them from also
   // firing the centre click-to-glitch.
@@ -36,9 +38,9 @@ export function SwiperGallery({ slides = defaultGallery }: { slides?: GallerySli
       {/* Click anywhere on the stage fires the glitch; the edge nav zones
           stopPropagation so they only navigate. */}
       <div
-        className={`gallery-stage${glitching ? " is-glitching" : ""}`}
-        onClick={triggerGlitch}
-        onAnimationEnd={() => setGlitching(false)}
+        className={`gallery-stage${animating ? " is-animating" : ""}`}
+        onClick={triggerAnim}
+        onAnimationEnd={() => setAnimating(false)}
       >
         <Swiper
           key={slides[0]?.src.src}
@@ -52,7 +54,7 @@ export function SwiperGallery({ slides = defaultGallery }: { slides?: GallerySli
           pagination={{ el: ".gallery-pagination", clickable: true }}
         >
           {slides.map((slide, idx) => (
-            <SwiperSlide key={idx}>
+            <SwiperSlide key={idx} className={slide.cssClass ?? "anim-glitch"}>
               <Image
                 src={slide.src}
                 alt={slide.alt}
