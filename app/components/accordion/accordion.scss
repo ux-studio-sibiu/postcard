@@ -1,4 +1,4 @@
-@import "@/app/styles/breakpoints";
+@use "@/app/styles/breakpoints" as *;
 
 .nsc-accordion {
   position: relative;
@@ -15,7 +15,7 @@
     right: -1.25rem;
     width: 3px;
     border-radius: 3px;
-    background: #9a9a9a;
+    background: var(--color-faint);
     opacity: 0;
     transition: opacity 0.2s ease;
     pointer-events: none;
@@ -124,26 +124,34 @@
       }
 
       .accordion-link {
-
-        margin-bottom: 10px;
-        float: right;
         margin-top: 0.75rem;
+        margin-bottom: 0.625rem;
+        float: right;
         font-size: 0.8rem;
         font-weight: 700;
         color: var(--color-ink);
 
-        @include respond-to("tablet") {
-          margin-right: 24px;
+        // Mobile: flow left in normal order with its own vertical spacing
+        // (inline-block so the vertical margins apply on the otherwise-inline <a>).
+        @include respond-to-max("tablet") {
+          float: none;
+          display: inline-block;
+          margin-top: 1.5rem;
+          margin-bottom: 2rem;
         }
 
-        &:hover{
+        @include respond-to("tablet") {
+          margin-right: 1.5rem;
+        }
+
+        &:hover {
           text-decoration: underline;
           text-underline-offset: 0.2em;
         }
 
         span {
           margin-left: 0.35rem;
-          color: #9a9a9a;
+          color: var(--color-faint);
         }
       }
 
@@ -153,7 +161,7 @@
       .accordion-gallery {
         clear: both;
         aspect-ratio: 1 / 1;
-        margin: 2rem 0 2.5rem;
+        margin: 0 0 2.5rem 0;
       }
     }
   }

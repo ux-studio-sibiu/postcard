@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { Accordion } from "@/app/components/accordion/accordion";
+import { ContactLink } from "@/app/components/contact-link/contact-link";
 import type { GallerySlide } from "@/app/data/gallery";
 
 // `blurb` is composed by each page as its own element (e.g.
@@ -13,7 +13,7 @@ export function Panel({ heading, children, blurb, onActiveChange }: { heading: s
       <Accordion onActiveChange={onActiveChange}>{children}</Accordion>
 
       <div className="page-footer">
-        <Link href="/contact" className="page-contact"> Contact <span aria-hidden="true">&rarr;</span></Link>
+        <ContactLink />
         {blurb}
       </div>
     </div>

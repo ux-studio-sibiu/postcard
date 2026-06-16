@@ -25,12 +25,22 @@ export function SwiperGallery({ slides = defaultGallery }: { slides?: GallerySli
   // main gallery plus per-project ones in the portfolio accordion), so a shared
   // ".gallery-pagination" selector would cross-wire them.
   const paginationId = useId();
+  // Slide (translate) transition on mobile, crossfade on desktop.
+  const [isMobile, setIsMobile] = useState(false);
 
   const triggerAnim = () => setAnimating(true);
 
   // The slide set changes when switching projects (Swiper remounts to slide 0);
   // reset the caption to match.
   useEffect(() => setActiveIndex(0), [slides]);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 768px)");
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
 
   // Side click zones step the carousel. stopPropagation keeps them from also
   // firing the centre click-to-glitch.
@@ -55,10 +65,10 @@ export function SwiperGallery({ slides = defaultGallery }: { slides?: GallerySli
         onAnimationEnd={() => setAnimating(false)}
       >
         <Swiper
-          key={slides[0]?.src.src}
+          key={`${isMobile ? "m" : "d"}-${slides[0]?.src.src}`}
           className="gallery-swiper"
           modules={[EffectFade, Pagination]}
-          effect="fade"
+          effect={isMobile ? "slide" : "fade"}
           fadeEffect={{ crossFade: true }}
           loop
           slidesPerView={1}

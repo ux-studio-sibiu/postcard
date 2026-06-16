@@ -8,6 +8,8 @@
   --color-ink: #1c1c1c;
   --color-muted: #6f6f6f;
   --color-line: #1c1c1c;
+  // Faint grey for scrollbars, pagination dots, nav-arrow accents.
+  --color-faint: #9a9a9a;
 
   // Lexend (loaded via next/font in layout.tsx), Helvetica as fallback.
   --font-sans: var(--font-lexend), "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -19,7 +21,7 @@ html {
   scroll-behavior: smooth;
   // Minimal page scrollbar (Firefox).
   scrollbar-width: thin;
-  scrollbar-color: #9a9a9a transparent;
+  scrollbar-color: var(--color-faint) transparent;
 }
 
 // Minimal scrollbars site-wide (Chrome/Edge/Safari). Defining the scrollbar
@@ -34,7 +36,7 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #9a9a9a;
+  background: var(--color-faint);
   border-radius: 4px;
 }
 
@@ -90,8 +92,8 @@ body {
 
   // On mobile the container fills the screen edge-to-edge — no scaling, full
   // viewport height.
-  @media (max-width: 768px) {
-    padding: 3rem 1.25rem;
+  @include respond-to-max("tablet") {
+    padding: 1.25rem;
     min-height: 100dvh;
     transform: none;
   }
@@ -130,7 +132,7 @@ body {
 
   span {
     margin-left: 0.35rem;
-    color: #9a9a9a;
+    color: var(--color-faint);
   }
 }
 
@@ -141,24 +143,23 @@ body {
   line-height: 1.5;
 }
 
-@media (max-width: 768px) {
+@include respond-to-max("tablet") {
   .page-footer {
     margin-top: 2.5rem;
   }
 }
 
-// Breakpoint show/hide utilities. Default (desktop) hides .mobile-only; the
-// mobile query swaps which is hidden.
-.mobile-only {
-  display: none;
+// Breakpoint show/hide utilities. Each only *hides* on its opposite breakpoint,
+// so the element keeps its own display where shown — no `display: revert`, which
+// would clobber a custom flex / inline-block display.
+.desktop-only {
+  @include respond-to-max("tablet") {
+    display: none;
+  }
 }
 
-@media (max-width: 768px) {
-  .mobile-only {
-    display: revert;
-  }
-
-  .desktop-only {
+.mobile-only {
+  @include respond-to("tablet") {
     display: none;
   }
 }

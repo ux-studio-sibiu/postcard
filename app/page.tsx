@@ -2,9 +2,12 @@ import { Composition } from "@/app/components/composition/composition";
 import { SwiperGallery } from "@/app/components/swiper-gallery/swiper-gallery";
 import { Panel } from "@/app/components/panel/panel";
 import { AccordionItem } from "@/app/components/accordion/accordion";
+import { MobileOnePager } from "@/app/components/mobile-onepager/mobile-onepager";
 
 export default function Home() {
   return (
+    <>
+    <div className="desktop-only">
     <Composition
       left={<SwiperGallery />}
       right={
@@ -40,6 +43,12 @@ export default function Home() {
         </Panel>
       }
     />
+    </div>
+
+    <div className="mobile-only">
+      <MobileOnePager />
+    </div>
+    </>
   );
 }
 

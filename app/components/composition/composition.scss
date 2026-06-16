@@ -1,3 +1,5 @@
+@use "@/app/styles/breakpoints" as *;
+
 .nsc-composition {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -18,7 +20,7 @@
     min-height: 0;
   }
 
-  @media (max-width: 768px) {
+  @include respond-to-max("tablet") {
     grid-template-columns: 1fr;
     gap: 5rem;
 
@@ -39,7 +41,7 @@
   // Hide the main gallery on mobile. Portfolio shows per-project galleries inside
   // the accordion instead; contact just drops it.
   &.hide-gallery-mobile {
-    @media (max-width: 768px) {
+    @include respond-to-max("tablet") {
       gap: 0;
 
       .composition-left {

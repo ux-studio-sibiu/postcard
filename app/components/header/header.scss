@@ -1,4 +1,4 @@
-@import "@/app/styles/breakpoints";
+@use "@/app/styles/breakpoints" as *;
 
 .nsc-header {
   display: flex;
@@ -45,8 +45,11 @@
     margin-left: 4.5rem;
   }
 
-  @media (max-width: 768px) {
-    // Keep everything on one row, centred (the brand is hidden on mobile).
+  @include respond-to-max("tablet") {
+    // Hidden on mobile for now — the mobile one-pager has no nav.
+    display: none;
+
+    // Kept for when the nav returns on mobile: one centred row (brand hidden).
     flex-wrap: nowrap;
     justify-content: center;
     gap: 1rem;

@@ -13,21 +13,23 @@ import "./accordion.scss";
 export function AccordionItem({ title, children, isOpen, onToggle, href, gallery }: { title: string; children: React.ReactNode; isOpen?: boolean; onToggle?: () => void; gallery?: GallerySlide[]; href?: string }) {
   const itemRef = useRef<HTMLLIElement>(null);
 
-  // Mobile: when this item opens (panel can be tall — it holds a gallery), the
-  // page is the scroller, so bring the trigger up to ~50px from the top so the
-  // title and the start of the content are in view. Deferred a frame so the new
-  // layout is settled, and smooth so it doesn't jump.
+  // Mobile: after this item opens (panel can be tall — it holds a gallery), the
+  // page is the scroller. If the trigger is already fully in view, leave it be;
+  // only when it's scrolled off-screen do we bring it ~50px from the top.
+  // Deferred a frame so the new layout is settled, and smooth so it doesn't jump.
   useEffect(() => {
     if (!isOpen || typeof window === "undefined") return;
     if (!window.matchMedia("(max-width: 768px)").matches) return;
     const id = requestAnimationFrame(() => {
       const el = itemRef.current;
       if (!el) return;
-      // How far we'd scroll to land the trigger ~50px from the top.
-      const offset = el.getBoundingClientRect().top - 50;
-      // Already roughly in place — skip so we don't do a jarring tiny scroll.
-      if (Math.abs(offset) < 60) return;
-      window.scrollTo({ top: window.scrollY + offset, behavior: "smooth" });
+      // Measure the trigger, not the whole item — its panel may be tall now.
+      const trigger = el.querySelector<HTMLElement>(".accordion-trigger");
+      const rect = (trigger ?? el).getBoundingClientRect();
+      // Fully in view — don't move it.
+      if (rect.top >= 0 && rect.bottom <= window.innerHeight) return;
+      // Off-screen — bring the trigger ~50px from the top.
+      window.scrollTo({ top: window.scrollY + rect.top - 50, behavior: "smooth" });
     });
     return () => cancelAnimationFrame(id);
   }, [isOpen]);
