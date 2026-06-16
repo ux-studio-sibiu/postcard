@@ -6,7 +6,7 @@ import "./accordion.scss";
 
 // `gallery` is carried by the item but not rendered here — the parent Accordion
 // reads it off the open item to drive an external gallery (see PortfolioShowcase).
-export function AccordionItem({ title, children, isOpen, onToggle }: { title: string; children: React.ReactNode; isOpen?: boolean; onToggle?: () => void; gallery?: GallerySlide[] }) {
+export function AccordionItem({ title, children, isOpen, onToggle, href }: { title: string; children: React.ReactNode; isOpen?: boolean; onToggle?: () => void; gallery?: GallerySlide[]; href?: string }) {
   return (
     <li className={`accordion-item${isOpen ? " is-open" : ""}`}>
       <button type="button" className="accordion-trigger" aria-expanded={isOpen} onClick={onToggle}>
@@ -15,6 +15,7 @@ export function AccordionItem({ title, children, isOpen, onToggle }: { title: st
       </button>
       <div className="accordion-panel" hidden={!isOpen}>
         <p>{typeof children === "string" ? <span dangerouslySetInnerHTML={{ __html: children }} /> : children}</p>
+        {href && <a className="accordion-link" href={href} target="_blank" rel="noopener noreferrer">view live <span aria-hidden="true">&rarr;</span></a>}
       </div>
     </li>
   );

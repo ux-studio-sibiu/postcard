@@ -88,9 +88,16 @@
       }
     }
 
-    .is-open .accordion-icon::after {
-      opacity: 0;
-      transform: translateX(-50%) scaleY(0);
+    .is-open {
+      
+      .accordion-title{
+        font-weight:600;
+      }
+
+      .accordion-icon::after {
+        opacity: 0;
+        transform: translateX(-50%) scaleY(0);
+      }
     }
 
     .accordion-panel {
@@ -102,6 +109,21 @@
         // Same colours as the trigger above.
         color: var(--color-ink);
         max-width: 85%;
+      }
+
+      .accordion-link {
+        margin-right: 24px;
+        margin-bottom: 10px;
+        float: right;
+        margin-top: 0.75rem;
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--color-ink);
+
+        span {
+          margin-left: 0.35rem;
+          color: #9a9a9a;
+        }
       }
     }
   }

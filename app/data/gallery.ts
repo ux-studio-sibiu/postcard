@@ -9,6 +9,7 @@ import type { StaticImageData } from "next/image";
 import kitzbuhel from "@/images/251028-Kiotzbuhel-Updated-Edit-10.jpg";
 import caseDeschiseCover from "@/images/case-deschise.jpg";
 import electricSpark from "@/images/electric-creativity-spark-stockcake.webp";
+import fire from "@/images/casedeschise-fire.jpg";
 
 // casedeschise.ro
 import zestrea from "@/images/case-deschise/5. Frescă magazin Zestrea - Artă veche și podoabe compressed.jpg";
@@ -40,6 +41,7 @@ export const defaultGallery: GallerySlide[] = [
   { src: electricSpark, alt: "A lightbulb bursting with multicoloured sparks" },
   { src: kitzbuhel, alt: "Fluted timber wall and concrete hall" },
   { src: caseDeschiseCover, alt: "Case Deschise" },
+  { src: fire, alt: "casedeschise.ro: Coliba Poplacean, Raul Sadului" },
 ];
 
 export const caseDeschiseGallery: GallerySlide[] = [
