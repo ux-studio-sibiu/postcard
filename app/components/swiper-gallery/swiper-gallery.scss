@@ -9,6 +9,33 @@
     height: 100%;
   }
 
+  // Alt text of the active frame, sitting just above the square (mirrors the
+  // pagination dots below). Single line, truncated if it runs long.
+  .gallery-caption {
+    position: absolute;
+    bottom: calc(100% + 0.4rem);
+    left: 0;
+    width: 100%;
+    margin: 0;
+    text-transform: lowercase;
+    
+    font-size: 0.8rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    a {
+      color: inherit;
+      margin-right:6px;
+      text-underline-offset: 0.15em;
+
+      &:hover {
+        text-decoration: underline;
+        // color: var(--color-muted);
+      }
+    }
+  }
+
   // 15%-wide edge zones that step the carousel. Custom left/right arrow
   // cursors (white chevron with a soft dark halo for contrast on any frame),
   // falling back to the resize cursors if the SVG cursor is unsupported.

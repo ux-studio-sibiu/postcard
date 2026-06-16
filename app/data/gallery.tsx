@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import type { StaticImageData } from "next/image";
 
 // Images are imported straight from the workspace /images folder. Each portfolio
@@ -36,35 +37,41 @@ import flowers from "@/images/clasa-zero/flowers-2.jpg";
 
 export type GallerySlide = {
   src: StaticImageData;
+  // Plain-text description — used as the image's alt attribute (accessibility).
   alt: string;
+  // Optional rich caption shown above the frame; may contain JSX such as links.
+  // Falls back to `alt` when omitted.
+  caption?: ReactNode;
   // CSS class applied to the slide — drives its click animation ("anim-glitch"
   // the punchy strobe, "anim-reveal" the gentle fade, "anim-fire" the flickering
   // firelight, "anim-simple" the same flicker without the warm tint) or any custom
   // class you define in swiper-gallery.scss. Defaults to "anim-glitch".
   cssClass?: string;
 };
+// put romanian dicaritics here:
+// Reused link for casedeschise.ro captions — keeps the markup tidy.
+const caseDeschiseLink = <a href="https://casedeschise.ro" target="_blank" rel="noopener noreferrer">www.casedeschise.ro : </a>;
 
 export const defaultGallery: GallerySlide[] = [
-  { src: electricSpark, alt: "A lightbulb bursting with multicoloured sparks" },
-  { src: fire, alt: "casedeschise.ro: Coliba Poplacean, Raul Sadului", cssClass: "anim-fire" },
-  { src: window, alt: "casedeschise.ro: Coliba Poplacean, Raul Sadului", cssClass: "anim-simple" },
-  { src: zestrea2, alt: "casedeschise.ro: Magazinul Zestrea", cssClass: "anim-simple" },
+  { src: electricSpark, alt: "" },
+  { src: fire, alt: "casedeschise.ro: Coliba Poplăcean, Râul Sadului", caption: <>{caseDeschiseLink} <span>Coliba Poplăcean, Râul Săduului</span></>, cssClass: "anim-fire" },
+  { src: window, alt: "casedeschise.ro: Coliba Poplăcean, Râul Sadului", caption: <>{caseDeschiseLink}: Coliba Poplăcean, Râul Săduului</>, cssClass: "anim-simple" },
+  { src: zestrea2, alt: "casedeschise.ro: Magazinul Zestrea", caption: <>{caseDeschiseLink}: Magazinul Zestrea</>, cssClass: "anim-simple" },
   { src: kitzbuhel, alt: "Fluted timber wall and concrete hall" },
   { src: caseDeschiseCover, alt: "Case Deschise" },
-  
 ];
 
 export const caseDeschiseGallery: GallerySlide[] = [
-  { src: zestrea, alt: "Frescă magazin Zestrea — artă veche și podoabe", cssClass: "anim-simple"  },
+  { src: zestrea, alt: "Frescă magazin Zestrea — artă veche și podoabe", cssClass: "anim-simple" },
   { src: scara, alt: "Primăria Municipiului Sibiu", cssClass: "anim-fire" },
-  { src: colibaPoplacean10, alt: "Coliba Poplăcean", cssClass: "anim-simple"  },
-  { src: colibaPoplacean3, alt: "Coliba Poplăcean", cssClass: "anim-simple"  },
-  { src: colibaTaroi5, alt: "Coliba Tăroi", cssClass: "anim-simple"  },
+  { src: colibaPoplacean10, alt: "Coliba Poplăcean", cssClass: "anim-simple" },
+  { src: colibaPoplacean3, alt: "Coliba Poplăcean", cssClass: "anim-simple" },
+  { src: colibaTaroi5, alt: "Coliba Tăroi", cssClass: "anim-simple" },
 ];
 
 export const slowDaysGallery: GallerySlide[] = [
-  { src: slowDays1, alt: "Slow Days Outside — kids activity", cssClass: "anim-simple"  },
-  { src: slowDays2, alt: "Slow Days Outside — kids activity", cssClass: "anim-simple"  },
+  { src: slowDays1, alt: "Slow Days Outside — kids activity", cssClass: "anim-simple" },
+  { src: slowDays2, alt: "Slow Days Outside — kids activity", cssClass: "anim-simple" },
 ];
 
 export const arhitecturalGallery: GallerySlide[] = [
@@ -74,7 +81,7 @@ export const arhitecturalGallery: GallerySlide[] = [
 
 export const clasaZeroGallery: GallerySlide[] = [
   { src: balloons, alt: "Clasa Zero — balloons puzzle", cssClass: "anim-fire" },
-  { src: cars1, alt: "Clasa Zero — cars puzzle", cssClass: "anim-fire"},
+  { src: cars1, alt: "Clasa Zero — cars puzzle", cssClass: "anim-fire" },
   { src: cars2, alt: "Clasa Zero — cars puzzle", cssClass: "anim-simple" },
   { src: flowers, alt: "Clasa Zero — flowers puzzle", cssClass: "anim-simple" },
 ];

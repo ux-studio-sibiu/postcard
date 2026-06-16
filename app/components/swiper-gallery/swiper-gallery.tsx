@@ -6,7 +6,7 @@ import "swiper/css/pagination";
 import "./swiper-gallery.scss";
 
 import Image from "next/image";
-import { useRef, useState, type MouseEvent } from "react";
+import { useEffect, useRef, useState, type MouseEvent } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectFade, Pagination } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
@@ -18,9 +18,15 @@ export function SwiperGallery({ slides = defaultGallery }: { slides?: GallerySli
   // animation (glitch / reveal) via its anim- class; only the active slide
   // animates, so a single animationEnd reliably clears the flag.
   const [animating, setAnimating] = useState(false);
+  // Active slide, used to show its alt text as a caption above the frame.
+  const [activeIndex, setActiveIndex] = useState(0);
   const swiperRef = useRef<SwiperType | null>(null);
 
   const triggerAnim = () => setAnimating(true);
+
+  // The slide set changes when switching projects (Swiper remounts to slide 0);
+  // reset the caption to match.
+  useEffect(() => setActiveIndex(0), [slides]);
 
   // Side click zones step the carousel. stopPropagation keeps them from also
   // firing the centre click-to-glitch.
@@ -35,6 +41,8 @@ export function SwiperGallery({ slides = defaultGallery }: { slides?: GallerySli
 
   return (
     <div className="nsc-swiper-gallery">
+      <p className="gallery-caption">{slides[activeIndex]?.caption ?? slides[activeIndex]?.alt}</p>
+
       {/* Click anywhere on the stage fires the glitch; the edge nav zones
           stopPropagation so they only navigate. */}
       <div
@@ -51,6 +59,10 @@ export function SwiperGallery({ slides = defaultGallery }: { slides?: GallerySli
           loop
           slidesPerView={1}
           onSwiper={(s) => (swiperRef.current = s)}
+          onSlideChange={(s) => {
+            setAnimating(false);
+            setActiveIndex(s.realIndex);
+          }}
           pagination={{ el: ".gallery-pagination", clickable: true }}
         >
           {slides.map((slide, idx) => (
