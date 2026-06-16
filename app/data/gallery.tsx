@@ -8,7 +8,7 @@ import type { StaticImageData } from "next/image";
 
 // Default — loose files in /images root.
 import kitzbuhel from "@/images/251028-Kiotzbuhel-Updated-Edit-10.jpg";
-import caseDeschiseCover from "@/images/case-deschise.jpg";
+import caseDeschiseCover from "@/images/case-deschise/case-deschise-cover.jpg";
 import electricSpark from "@/images/electric-creativity-spark-stockcake.webp";
 import fire from "@/images/casedeschise-fire.jpg";
 import window from "@/images/casedeschise-window.jpg";
@@ -22,8 +22,9 @@ import colibaPoplacean3 from "@/images/case-deschise/Coliba Poplăcean (3).jpg";
 import colibaTaroi5 from "@/images/case-deschise/Coliba Tăroi (5).jpg";
 
 // slowdays-outside.ro
-import slowDays1 from "@/images/slow-days-outside/a-3.png";
-import slowDays2 from "@/images/slow-days-outside/a8cd93f4-d5f5-4e7f-ac5c-4d14cb02e0f7-image_edit_oai_img_rewchsIDZeB_1ftjI12Cm.png";
+import slowDays1 from "@/images/slow-days-outside/slowdays.jpg";
+import slowDays2 from "@/images/slow-days-outside/slowdays2.jpg";
+import slowDays3 from "@/images/slow-days-outside/slowdays3.jpg";
 
 // dianaconstantinescu.ro
 import omotesando from "@/images/arhitectural-prototype/08-251104-jp-web-JS-Omotesando-new-edit.jpg";
@@ -52,13 +53,15 @@ export type GallerySlide = {
 
 export const defaultGallery: GallerySlide[] = [
   { src: electricSpark, alt: "" },
-
-  { src: fire, alt: "casedeschise.ro: Coliba Poplăcean, Râul Sadului", 
-    caption: <><a href="https://casedeschise.ro/sibiu/coliba-poplacean-tara-colibelor" target="_blank" rel="noopener noreferrer">www.casedeschise.ro : </a> <span>Coliba Poplăcean, Râul Săduului, 2026</span></>,
-    cssClass: "anim-fire" },
-
+  { src: scara, alt: "Primăria Municipiului Sibiu", cssClass: "anim-fire" },
+  
+  { src: colibaTaroi5, alt: "Coliba Tăroi", cssClass: "anim-simple" },
+  // { src: fire, alt: "casedeschise.ro: Coliba Poplăcean, Râul Sadului", 
+  //   caption: <><a href="https://casedeschise.ro/sibiu/coliba-poplacean-tara-colibelor" target="_blank" rel="noopener noreferrer">www.casedeschise.ro : </a> <span>Coliba Poplăcean, Râul Săduului, 2026</span></>,
+  //   cssClass: "anim-fire" },
+  { src: cars1, alt: "Clasa Zero — cars puzzle", cssClass: "anim-fire" },
+  { src: slowDays1, alt: "Slow Days Outside — kids activity", cssClass: "anim-none" },
   { src: flowers, alt: "Clasa Zero — flowers puzzle", cssClass: "anim-none" },
-
   // { src: window, alt: "casedeschise.ro: Coliba Poplăcean, Râul Sadului", caption: <>{caseDeschiseLink}: Coliba Poplăcean, Râul Săduului</>, cssClass: "anim-simple" },
   { src: zestrea2, alt: "casedeschise.ro: Magazinul Zestrea", 
     caption: <><a href="https://casedeschise.ro/sibiu/fresca-magazin-zestrea" target="_blank" rel="noopener noreferrer">www.casedeschise.ro : </a>: Magazinul Zestrea, 2025</>, 
@@ -77,13 +80,15 @@ export const caseDeschiseGallery: GallerySlide[] = [
 ];
 
 export const slowDaysGallery: GallerySlide[] = [
-  { src: slowDays1, alt: "Slow Days Outside — kids activity", cssClass: "anim-simple" },
-  { src: slowDays2, alt: "Slow Days Outside — kids activity", cssClass: "anim-simple" },
+  { src: slowDays1, alt: "Slow Days Outside — kids activity", cssClass: "anim-none" },
+  { src: slowDays2, alt: "Slow Days Outside — kids activity", cssClass: "anim-none" },
+  { src: slowDays3, alt: "Slow Days Outside — kids activity", cssClass: "anim-none" },
 ];
 
 export const arhitecturalGallery: GallerySlide[] = [
-  { src: omotesando, alt: "Minimalist retail interior in oak" },
   { src: arhitectural2, alt: "Architectural study" },
+  { src: omotesando, alt: "Minimalist retail interior in oak" },
+  
 ];
 
 export const clasaZeroGallery: GallerySlide[] = [

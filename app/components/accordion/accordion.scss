@@ -130,6 +130,11 @@
         font-weight: 700;
         color: var(--color-ink);
 
+        &:hover{
+          text-decoration: underline;
+          text-underline-offset: 0.2em;
+        }
+
         span {
           margin-left: 0.35rem;
           color: #9a9a9a;

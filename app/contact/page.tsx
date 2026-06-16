@@ -10,14 +10,19 @@ export default function ContactPage() {
       right={
         <Panel
           heading="Contact"
-          blurb="Every project is different, shaped by its context, ambitions and people. 
-          We'd love to learn about your work, understand how things currently function, 
-          and explore a fresh perspective."
+          blurb={
+            <p className="page-blurb contact-intro" style={{ maxWidth: '67ch' }}>
+              Every project is different, shaped by its context, ambitions and people.
+              We&apos;d love to learn about your work, understand how things currently function,
+              and explore a fresh perspective.
+            </p>
+          }
         >
-          <AccordionItem title="WhatsApp">The easiest way — a short, no-pressure chat.</AccordionItem>
-          <AccordionItem title="Email">salut@uxstudiosibiu.ro</AccordionItem>
-          <AccordionItem title="Area">Sibiu — and online, wherever it makes sense.</AccordionItem>
-          <AccordionItem title="Instagram">@ux.studio.sibiu</AccordionItem>
+          <AccordionItem title="Email">uxstudiosibiu@gmail.com</AccordionItem>
+          <AccordionItem title="Phone">0748 546788 direct call or WhatsApp both work for us</AccordionItem>
+          
+          <AccordionItem title="Address">str. Tribunei mr. 7, Sibiu, Romania</AccordionItem>
+          {/* <AccordionItem title="Where not to search">@ux.studio.sibiu</AccordionItem> */}
         </Panel>
       }
     />

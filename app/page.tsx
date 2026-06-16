@@ -10,19 +10,24 @@ export default function Home() {
       right={
         <Panel
           heading="ux.studio.sibiu"
-          blurb="ux.studio.sibiu is a digital creative agency that imagines, 
-designs and develops unique digital solutions, with focus on local, 
-cultural, educational and creative projects."
-                          >
+          blurb={
+            <p className="page-blurb home-intro" style={{ maxWidth: '63ch' }}>
+              ux.studio.sibiu is a digital creative agency that imagines,
+              designs and develops unique digital solutions, with focus on local,
+              cultural, educational and creative projects.
+            </p>
+          }
+        >
           <AccordionItem title="Fast websites">Optimized for speed and performance across all devices.</AccordionItem>
           
           
           <AccordionItem title="Complete content control">Manage your content independently without technical barriers.</AccordionItem>
           <AccordionItem title="Modern design">
-            Influenced by contemporary design principles and graphic
+            <span>Influenced by contemporary design principles and graphic
             design tradition, we create products that
-            balance clarity, usability and bold visual expression.
-            Clean, contemporary aesthetics. Unique design tailored to its function and your vision.
+            balance clarity, usability and bold visual expression. </span>
+
+            <span> We value clean, contemporary design shaped by context, function and your vision.</span>
             </AccordionItem>
           
           <AccordionItem title="Custom functionality">Built specifically for your needs, no compromises.</AccordionItem>
@@ -38,6 +43,9 @@ cultural, educational and creative projects."
   );
 }
 
+
+
+// A restrained visual language shaped by content, context, and function.
 
 
 // Influenced by modernist design principles and graphic
