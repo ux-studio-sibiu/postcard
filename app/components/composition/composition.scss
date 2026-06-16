@@ -32,4 +32,17 @@
       aspect-ratio: 1 / 1;
     }
   }
+
+  // Portfolio only: on mobile the per-project galleries render inside each
+  // accordion panel, so the main gallery is hidden. Scoped to this modifier so
+  // home/contact keep their gallery on mobile.
+  &.gallery-in-accordion {
+    @media (max-width: 768px) {
+      gap: 0;
+
+      .composition-left {
+        display: none;
+      }
+    }
+  }
 }

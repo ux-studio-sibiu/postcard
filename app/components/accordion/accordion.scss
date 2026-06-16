@@ -1,3 +1,5 @@
+@import "@/app/styles/breakpoints";
+
 .nsc-accordion {
   position: relative;
   flex: 1 1 auto;
@@ -122,13 +124,17 @@
       }
 
       .accordion-link {
-        margin-right: 24px;
+
         margin-bottom: 10px;
         float: right;
         margin-top: 0.75rem;
         font-size: 0.8rem;
         font-weight: 700;
         color: var(--color-ink);
+
+        @include respond-to("tablet") {
+          margin-right: 24px;
+        }
 
         &:hover{
           text-decoration: underline;
@@ -139,6 +145,15 @@
           margin-left: 0.35rem;
           color: #9a9a9a;
         }
+      }
+
+      // Mobile-only per-project gallery below the text. Square, with clearance
+      // above for the gallery caption and below for the pagination dots; clears
+      // the floated "view live" link above it.
+      .accordion-gallery {
+        clear: both;
+        aspect-ratio: 1 / 1;
+        margin: 2rem 0 2.5rem;
       }
     }
   }

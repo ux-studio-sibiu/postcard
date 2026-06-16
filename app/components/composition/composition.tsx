@@ -7,12 +7,14 @@ import "./composition.scss";
 export function Composition({
   left,
   right,
+  className = "",
 }: {
   left: ReactNode;
   right: ReactNode;
+  className?: string;
 }) {
   return (
-    <div className="nsc-composition">
+    <div className={`nsc-composition ${className}`.trim()}>
       <div className="composition-box composition-left">{left}</div>
       <div className="composition-box composition-right">{right}</div>
     </div>

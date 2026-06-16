@@ -1,8 +1,12 @@
+@import "@/app/styles/breakpoints";
+
 .nsc-header {
   display: flex;
   align-items: center;
   gap: 2rem;
   padding: 1.75rem 0;
+  
+
 
   .header-brand {
     display:none;
@@ -42,10 +46,12 @@
   }
 
   @media (max-width: 768px) {
-    // Keep everything on one row.
+    // Keep everything on one row, centred (the brand is hidden on mobile).
     flex-wrap: nowrap;
-    gap: 0.75rem;
+    justify-content: center;
+    gap: 1rem;
     padding: 1.25rem 0;
+    padding-bottom: 4rem;
 
     .header-brand {
       font-size: 0.95rem;
@@ -53,7 +59,8 @@
 
     .header-nav {
       gap: 1rem;
-      margin-left: auto;
+      // Drop the desktop right-push so the cluster centres.
+      margin-left: 0;
     }
 
     .nav-link,
@@ -62,7 +69,8 @@
     }
 
     .header-contact {
-      margin-left: 1rem;
+      // Drop the desktop detachment so spacing is even within the centred row.
+      margin-left: 0;
     }
   }
 }

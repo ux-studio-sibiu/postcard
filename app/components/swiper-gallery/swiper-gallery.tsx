@@ -6,7 +6,7 @@ import "swiper/css/pagination";
 import "./swiper-gallery.scss";
 
 import Image from "next/image";
-import { useEffect, useRef, useState, type MouseEvent } from "react";
+import { useEffect, useId, useRef, useState, type MouseEvent } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectFade, Pagination } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
@@ -21,6 +21,10 @@ export function SwiperGallery({ slides = defaultGallery }: { slides?: GallerySli
   // Active slide, used to show its alt text as a caption above the frame.
   const [activeIndex, setActiveIndex] = useState(0);
   const swiperRef = useRef<SwiperType | null>(null);
+  // Unique pagination target — several galleries can live on one page (e.g. the
+  // main gallery plus per-project ones in the portfolio accordion), so a shared
+  // ".gallery-pagination" selector would cross-wire them.
+  const paginationId = useId();
 
   const triggerAnim = () => setAnimating(true);
 
@@ -41,7 +45,7 @@ export function SwiperGallery({ slides = defaultGallery }: { slides?: GallerySli
 
   return (
     <div className="nsc-swiper-gallery">
-      <p className="gallery-caption">{slides[activeIndex]?.caption ?? slides[activeIndex]?.alt}</p>
+      <p className="gallery-caption desktop-only">{slides[activeIndex]?.caption ?? slides[activeIndex]?.alt}</p>
 
       {/* Click anywhere on the stage fires the glitch; the edge nav zones
           stopPropagation so they only navigate. */}
@@ -63,7 +67,7 @@ export function SwiperGallery({ slides = defaultGallery }: { slides?: GallerySli
             setAnimating(false);
             setActiveIndex(s.realIndex);
           }}
-          pagination={{ el: ".gallery-pagination", clickable: true }}
+          pagination={{ el: `[data-pagination="${paginationId}"]`, clickable: true }}
         >
           {slides.map((slide, idx) => (
             <SwiperSlide key={idx} className={slide.cssClass ?? "anim-glitch"}>
@@ -96,7 +100,7 @@ export function SwiperGallery({ slides = defaultGallery }: { slides?: GallerySli
         />
       </div>
 
-      <div className="gallery-pagination" />
+      <div className="gallery-pagination" data-pagination={paginationId} />
     </div>
   );
 }
