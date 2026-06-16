@@ -30,13 +30,15 @@
 
     .composition-left {
       aspect-ratio: 1 / 1;
+      // Gallery drops below the panel on mobile. Only affects pages that keep
+      // the gallery (services / home) — portfolio and contact hide it below.
+      order: 1;
     }
   }
 
-  // Portfolio only: on mobile the per-project galleries render inside each
-  // accordion panel, so the main gallery is hidden. Scoped to this modifier so
-  // home/contact keep their gallery on mobile.
-  &.gallery-in-accordion {
+  // Hide the main gallery on mobile. Portfolio shows per-project galleries inside
+  // the accordion instead; contact just drops it.
+  &.hide-gallery-mobile {
     @media (max-width: 768px) {
       gap: 0;
 

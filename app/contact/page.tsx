@@ -6,6 +6,7 @@ import { AccordionItem } from "@/app/components/accordion/accordion";
 export default function ContactPage() {
   return (
     <Composition
+      className="hide-gallery-mobile"
       left={<SwiperGallery />}
       right={
         <Panel

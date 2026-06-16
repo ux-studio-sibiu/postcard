@@ -23,8 +23,11 @@ export function AccordionItem({ title, children, isOpen, onToggle, href, gallery
     const id = requestAnimationFrame(() => {
       const el = itemRef.current;
       if (!el) return;
-      const top = el.getBoundingClientRect().top + window.scrollY - 50;
-      window.scrollTo({ top, behavior: "smooth" });
+      // How far we'd scroll to land the trigger ~50px from the top.
+      const offset = el.getBoundingClientRect().top - 50;
+      // Already roughly in place — skip so we don't do a jarring tiny scroll.
+      if (Math.abs(offset) < 60) return;
+      window.scrollTo({ top: window.scrollY + offset, behavior: "smooth" });
     });
     return () => cancelAnimationFrame(id);
   }, [isOpen]);

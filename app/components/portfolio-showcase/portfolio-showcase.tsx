@@ -14,7 +14,7 @@ export function PortfolioShowcase({ heading, blurb, children }: { heading: strin
 
   return (
     <Composition
-      className="gallery-in-accordion"
+      className="hide-gallery-mobile"
       left={<SwiperGallery slides={slides} />}
       right={<Panel heading={heading} blurb={blurb} onActiveChange={(g) => setSlides(g ?? defaultGallery)}>{children}</Panel>}
     />
