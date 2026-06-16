@@ -11,8 +11,26 @@ import "./accordion.scss";
 // rendered while the item is open, so the Swiper mounts into a visible panel and
 // measures correctly.
 export function AccordionItem({ title, children, isOpen, onToggle, href, gallery }: { title: string; children: React.ReactNode; isOpen?: boolean; onToggle?: () => void; gallery?: GallerySlide[]; href?: string }) {
+  const itemRef = useRef<HTMLLIElement>(null);
+
+  // Mobile: when this item opens (panel can be tall — it holds a gallery), the
+  // page is the scroller, so bring the trigger up to ~50px from the top so the
+  // title and the start of the content are in view. Deferred a frame so the new
+  // layout is settled, and smooth so it doesn't jump.
+  useEffect(() => {
+    if (!isOpen || typeof window === "undefined") return;
+    if (!window.matchMedia("(max-width: 768px)").matches) return;
+    const id = requestAnimationFrame(() => {
+      const el = itemRef.current;
+      if (!el) return;
+      const top = el.getBoundingClientRect().top + window.scrollY - 50;
+      window.scrollTo({ top, behavior: "smooth" });
+    });
+    return () => cancelAnimationFrame(id);
+  }, [isOpen]);
+
   return (
-    <li className={`accordion-item${isOpen ? " is-open" : ""}`}>
+    <li ref={itemRef} className={`accordion-item${isOpen ? " is-open" : ""}`}>
       <button type="button" className="accordion-trigger" aria-expanded={isOpen} onClick={onToggle}>
         <span className="accordion-title">{title}</span>
         <span className="accordion-icon" aria-hidden="true" />
