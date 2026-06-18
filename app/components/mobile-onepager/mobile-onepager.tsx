@@ -84,17 +84,6 @@ export function MobileOnePager() {
         </div>
       </section>
 
-      {activePortfolioModal !== null && (
-        <PortfolioModal
-          title={portfolioItems[activePortfolioModal].title}
-          gallery={portfolioItems[activePortfolioModal].gallery}
-          description={portfolioItems[activePortfolioModal].description}
-          href={portfolioItems[activePortfolioModal].href}
-          isOpen={true}
-          onClose={() => setActivePortfolioModal(null)}
-        />
-      )}
-
       {/* Contact — #contact on the title is where ContactLink's scroll variant lands. */}
       <section id="contact" className="fullscreen-section onepager-sectionx" style={{ marginBottom: '10rem' }}>
         <div className="onepager-content">
@@ -106,6 +95,17 @@ export function MobileOnePager() {
           </Accordion>
         </div>
       </section>
+
+      {activePortfolioModal !== null && (
+        <PortfolioModal
+          title={portfolioItems[activePortfolioModal].title}
+          gallery={portfolioItems[activePortfolioModal].gallery}
+          description={portfolioItems[activePortfolioModal].description}
+          href={portfolioItems[activePortfolioModal].href}
+          isOpen={true}
+          onClose={() => setActivePortfolioModal(null)}
+        />
+      )}
     </div>
   );
 }

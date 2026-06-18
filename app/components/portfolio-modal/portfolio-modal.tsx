@@ -36,9 +36,16 @@ export function PortfolioModal({
   return (
     <div className="portfolio-modal-overlay" onClick={onClose}>
       <div className="portfolio-modal" onClick={(e) => e.stopPropagation()}>
-        <button className="portfolio-modal-close" onClick={onClose} aria-label="Close">
-          <span aria-hidden="true">&larr;</span> back
-        </button>
+        <div className="portfolio-modal-header">
+          <button className="portfolio-modal-close" onClick={onClose} aria-label="Close">
+            <span aria-hidden="true">&larr;</span> back
+          </button>
+          {href && (
+            <a className="portfolio-modal-link portfolio-modal-link-top" href={href} target="_blank" rel="noopener noreferrer">
+              view live <span aria-hidden="true">&rarr;</span>
+            </a>
+          )}
+        </div>
         <div className="portfolio-modal-gallery">
           <SwiperGallery slides={gallery} />
         </div>
