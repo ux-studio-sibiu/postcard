@@ -51,3 +51,10 @@
     padding-left: #{$i}rem !important;
   }
 }
+
+// Arrow styling
+.arrow-faint {
+  margin-left: 0.35rem;
+  color: var(--color-faint);
+  font-weight: 700;
+}

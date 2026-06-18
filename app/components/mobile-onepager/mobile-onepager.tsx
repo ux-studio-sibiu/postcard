@@ -89,8 +89,8 @@ export function MobileOnePager() {
         <div className="onepager-content">
           <h2 className="page-title">Contact</h2>
           <Accordion>
-            <AccordionItem title="Email">uxstudiosibiu@gmail.com</AccordionItem>
-            <AccordionItem title="Phone">0748 546788 direct call or WhatsApp both work for us</AccordionItem>
+            <AccordionItem title="Email"><a href="mailto:ux@studiosibiu.com">ux@studiosibiu.com</a></AccordionItem>
+            <AccordionItem title="Phone">40 748 546788 <span className="arrow-faint mr-1">→</span>direct call or whatsapp</AccordionItem>
             <AccordionItem title="Address">str. Tribunei mr. 7, Sibiu, Romania</AccordionItem>
           </Accordion>
         </div>

@@ -121,6 +121,9 @@
         // Same colours as the trigger above.
         color: var(--color-ink);
         max-width: 85%;
+        
+
+        @include respond-to-max("tablet") {max-width: unset;}
       }
 
       .accordion-link {
