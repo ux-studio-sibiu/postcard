@@ -19,3 +19,35 @@
 .object-contain {
   object-fit: contain;
 }
+
+// Margin utilities
+@for $i from 1 through 10 {
+  .mt-#{$i} {
+    margin-top: #{$i}rem !important;
+  }
+  .mb-#{$i} {
+    margin-bottom: #{$i}rem !important;
+  }
+  .mr-#{$i} {
+    margin-right: #{$i}rem !important;
+  }
+  .ml-#{$i} {
+    margin-left: #{$i}rem !important;
+  }
+}
+
+// Padding utilities
+@for $i from 1 through 10 {
+  .pt-#{$i} {
+    padding-top: #{$i}rem !important;
+  }
+  .pb-#{$i} {
+    padding-bottom: #{$i}rem !important;
+  }
+  .pr-#{$i} {
+    padding-right: #{$i}rem !important;
+  }
+  .pl-#{$i} {
+    padding-left: #{$i}rem !important;
+  }
+}

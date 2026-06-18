@@ -12,9 +12,19 @@ import "./mobile-onepager.scss";
 export function MobileOnePager() {
   return (
     <div className="nsc-mobile-onepager">
-      <div className="onepager-gallery">
-        <SwiperGallery />
-      </div>
+
+      <section className="fullscreen-section">
+        <div className="onepager-gallery">
+          <SwiperGallery />
+        </div>
+
+        <div className="onepager-footer">
+          <ContactLink />
+          <p className="page-blurb">ux.studio.sibiu is a digital creative agency that imagines, designs and develops unique digital solutions, with focus on local, cultural, educational and creative projects.</p>
+        </div>
+      </section>
+
+
 
       {/* Services — title inside the section so it keeps the tighter desktop
           title→accordion spacing; the flex gap only separates sections. */}
@@ -32,11 +42,6 @@ export function MobileOnePager() {
         </Accordion>
       </section>
 
-      {/* Contact link + blurb grouped and centred, like the desktop footer. */}
-      <div className="onepager-footer">
-        <ContactLink />
-        <p className="page-blurb">Every project is different, shaped by its context, ambitions and people.</p>
-      </div>
 
       {/* Portfolio — each item carries its gallery, which renders inline on mobile. */}
       <section className="onepager-section">

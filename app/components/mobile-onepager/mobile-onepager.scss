@@ -3,6 +3,15 @@
   flex-direction: column;
   gap: 2.5rem;
 
+  // Full viewport height section for hero/hero-like layouts on mobile
+  .fullscreen-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+    padding: 2rem 0;
+  }
+
   // Each section groups its title + accordion, so the flex gap only separates
   // sections; the title keeps its shared `.page-title` margin (desktop spacing)
   // beneath it. (No media query needed — this component only renders on mobile.)
