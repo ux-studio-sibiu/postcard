@@ -30,7 +30,7 @@ export default function Home() {
             design tradition, we create products that
             balance clarity, usability and bold visual expression. </span>
 
-            <span> We value clean, contemporary design shaped by context, function and your vision.</span>
+            <span>Design is shaped by context, function and your vision.</span>
             </AccordionItem>
           
           <AccordionItem title="Custom functionality">Built specifically for your needs, no compromises.</AccordionItem>

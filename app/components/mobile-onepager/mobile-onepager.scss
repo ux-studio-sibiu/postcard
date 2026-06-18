@@ -12,6 +12,13 @@
     padding: 2rem 0;
   }
 
+  // Group title + accordion with fixed vertical positioning
+  .onepager-content {
+    display: flex;
+    flex-direction: column;
+    margin-top: calc(50vh - 150px);
+  }
+
   // Each section groups its title + accordion, so the flex gap only separates
   // sections; the title keeps its shared `.page-title` margin (desktop spacing)
   // beneath it. (No media query needed — this component only renders on mobile.)
@@ -19,6 +26,26 @@
     display: flex;
     flex-direction: column;
     margin-top: 3rem;
+  }
+
+  // Horizontal navigation menu with scroll links to sections
+  .onepager-nav {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+
+    a {
+      text-decoration: none;
+      font-weight: 500;
+      color: inherit;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.2s ease;
+
+      &:hover {
+        border-bottom-color: currentColor;
+      }
+    }
   }
 
   // Contact link + blurb grouped and centred, like the desktop footer. Flex
@@ -42,11 +69,5 @@
   // below leaves room for the pagination dots (which sit just under the square).
   .onepager-gallery {
     aspect-ratio: 1 / 1;
-  }
-
-  // Offset the smooth scroll target so the contact title lands ~50px from the
-  // top (matches the accordion open-scroll convention).
-  #contact {
-    scroll-margin-top: 50px;
   }
 }
