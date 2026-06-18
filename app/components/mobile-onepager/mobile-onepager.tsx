@@ -1,6 +1,10 @@
+"use client";
+
+import { useState } from "react";
 import { SwiperGallery } from "@/app/components/swiper-gallery/swiper-gallery";
 import { Accordion, AccordionItem } from "@/app/components/accordion/accordion";
 import { ContactLink } from "@/app/components/contact-link/contact-link";
+import { PortfolioModal } from "@/app/components/portfolio-modal/portfolio-modal";
 import { caseDeschiseGallery, slowDaysGallery, arhitecturalGallery, clasaZeroGallery } from "@/app/data/gallery";
 import "./mobile-onepager.scss";
 
@@ -10,6 +14,14 @@ import "./mobile-onepager.scss";
 // self-contained — reorder the blocks freely, and drop a <p className="page-blurb">
 // or a <ContactLink /> at any point.
 export function MobileOnePager() {
+  const [activePortfolioModal, setActivePortfolioModal] = useState<number | null>(null);
+
+  const portfolioItems = [
+    { title: "casedeschise.ro", gallery: caseDeschiseGallery, href: "https://casedeschise.ro", description: "Annual architectural event in Sibiu and Ramnicu Valcea. Organizers have simple, full content control, including custom signup forms. Signup flow via QR code by email. Mobile first design. Admin dashboard in Sanity." },
+    { title: "slowdays-outside.ro", gallery: slowDaysGallery, href: "https://slowdays-outside.ro", description: "Platform for kids activities. Educators post events and manage signups and group comunication." },
+    { title: "architectural-portfolio.ro", gallery: arhitecturalGallery, href: "https://architectural-portfolio.ro", description: "Portfolio for architectural studio. Minimal, restrained design" },
+    { title: "clasazero.ro", gallery: clasaZeroGallery, href: "https://clasazero.ro", description: "Random stem puzzles for pre-school kids. AI generated graphics. In progress.." },
+  ];
   return (
     <div className="nsc-mobile-onepager">
 
@@ -53,18 +65,35 @@ export function MobileOnePager() {
       </section>
 
 
-      {/* Portfolio — each item carries its gallery, which renders inline on mobile. */}
+      {/* Portfolio — each item opens a fullscreen modal with gallery on mobile. */}
       <section id="portfolio" className="fullscreen-section onepager-sectionx">
         <div className="onepager-content">
           <h2 className="page-title">Portfolio</h2>
-          <Accordion>
-            <AccordionItem title="casedeschise.ro" gallery={caseDeschiseGallery} href="https://casedeschise.ro">Annual architectural event in Sibiu and Ramnicu Valcea. Organizers have simple, full content control, including custom signup forms. Signup flow via QR code by email. Mobile first design. Admin dashboard in Sanity. </AccordionItem>
-            <AccordionItem title="slowdays-outside.ro" gallery={slowDaysGallery} href="https://slowdays-outside.ro">Platform for kids activities. Educators post events and manage signups and group comunication.</AccordionItem>
-            <AccordionItem title="architectural-portfolio.ro" gallery={arhitecturalGallery} href="https://architectural-portfolio.ro">Portfolio for architectural studio. Minimal, restrained design</AccordionItem>
-            <AccordionItem title="clasazero.ro" gallery={clasaZeroGallery} href="https://clasazero.ro">Random stem puzzles for pre-school kids. AI generated graphics. In progress..</AccordionItem>
-          </Accordion>
+          <div className="nsc-accordion">
+            <ul className="accordion-list">
+              {portfolioItems.map((item, idx) => (
+                <li key={idx} className="accordion-item">
+                  <button type="button" className="accordion-trigger" onClick={() => setActivePortfolioModal(idx)}>
+                    <span className="accordion-title">{item.title}</span>
+                    <span className="accordion-icon" aria-hidden="true" />
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
+
+      {activePortfolioModal !== null && (
+        <PortfolioModal
+          title={portfolioItems[activePortfolioModal].title}
+          gallery={portfolioItems[activePortfolioModal].gallery}
+          description={portfolioItems[activePortfolioModal].description}
+          href={portfolioItems[activePortfolioModal].href}
+          isOpen={true}
+          onClose={() => setActivePortfolioModal(null)}
+        />
+      )}
 
       {/* Contact — #contact on the title is where ContactLink's scroll variant lands. */}
       <section id="contact" className="fullscreen-section onepager-sectionx" style={{ marginBottom: '10rem' }}>
