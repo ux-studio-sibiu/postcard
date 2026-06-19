@@ -95,7 +95,7 @@ export function MobileOnePager() {
           title={portfolioItems[activePortfolioModal].title}
           gallery={portfolioItems[activePortfolioModal].gallery}
           description={portfolioItems[activePortfolioModal].description}
-          href={portfolioItems[activePortfolioModal].href}
+          href={portfolioItems[activePortfolioModal].mobileHref ?? portfolioItems[activePortfolioModal].href}
           isOpen={true}
           onClose={() => setActivePortfolioModal(null)}
         />

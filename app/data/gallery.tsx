@@ -112,11 +112,14 @@ export type PortfolioItem = {
   title: string;
   gallery: GallerySlide[];
   href: string;
+  // Optional per-surface override. Mobile uses `mobileHref` when set, otherwise
+  // falls back to `href`; desktop always uses `href`.
+  mobileHref?: string;
   description: string;
 };
 
 export const portfolioItems: PortfolioItem[] = [
-  { title: "Case Deschise", gallery: caseDeschiseGallery, href: "https://casedeschise.ro", description: "Annual architectural event in Sibiu and Ramnicu Valcea. Organizers have simple, full content control, including custom signup forms. Signup flow via QR code by email. Mobile first design. Admin dashboard in Sanity." },
+  { title: "Case Deschise", gallery: caseDeschiseGallery, href: "https://casedeschise.ro", mobileHref: "https://casedeschise.ro/sibiu", description: "Annual architectural event in Sibiu and Ramnicu Valcea. Organizers have simple, full content control, including custom signup forms. Signup flow via QR code by email. Mobile first design. Admin dashboard in Sanity." },
   { title: "Slow Days Outside", gallery: slowDaysGallery, href: "https://slow-days-outside.vercel.app/", description: "Platform for kids activities. Educators post events and manage signups and group comunication." },
   { title: "Photography Portfolio", gallery: arhitecturalGallery, href: "https://photography-prototype.vercel.app", description: "Portfolio for architectural studio. Minimal, restrained design" },
   { title: "Clasa Zero", gallery: clasaZeroGallery, href: "https://clasa-zero.vercel.app/game", description: "Random stem puzzles for pre-school kids. AI generated graphics. It is in progress.." },
