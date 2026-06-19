@@ -42,7 +42,7 @@ export function AccordionItem({ title, children, isOpen, onToggle, href, gallery
       </button>
       <div className="accordion-panel" hidden={!isOpen}>
         <p>{typeof children === "string" ? <span dangerouslySetInnerHTML={{ __html: children }} /> : children}</p>
-        {href && <a className="accordion-link" href={href} target="_blank" rel="noopener noreferrer">view live <span aria-hidden="true">&rarr;</span></a>}
+        {href && <a className="accordion-link" href={href} target="_blank" rel="noopener noreferrer">view live <span>&rarr;</span></a>}
         {isOpen && gallery && <div className="accordion-gallery mobile-only"><SwiperGallery slides={gallery} /></div>}
       </div>
     </li>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import type { GallerySlide } from "@/app/data/gallery";
 import { SwiperGallery } from "@/app/components/swiper-gallery/swiper-gallery";
 import "./portfolio-modal.scss";
@@ -20,24 +20,33 @@ export function PortfolioModal({
   isOpen: boolean;
   onClose: () => void;
 }) {
+  const [isClosing, setIsClosing] = useState(false);
+  const [shouldRender, setShouldRender] = useState(isOpen);
+
   useEffect(() => {
     if (isOpen) {
+      setShouldRender(true);
+      setIsClosing(false);
       document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
     }
-    return () => {
-      document.body.style.overflow = "";
-    };
   }, [isOpen]);
 
-  if (!isOpen) return null;
+  if (!shouldRender) return null;
+
+  const handleClose = () => {
+    setIsClosing(true);
+    setTimeout(() => {
+      document.body.style.overflow = "";
+      setShouldRender(false);
+      onClose();
+    }, 400);
+  };
 
   return (
-    <div className="portfolio-modal-overlay" onClick={onClose}>
-      <div className="portfolio-modal" onClick={(e) => e.stopPropagation()}>
+    <div className="portfolio-modal-overlay" onClick={handleClose}>
+      <div className={`portfolio-modal${isClosing ? " is-closing" : ""}`} onClick={(e) => e.stopPropagation()}>
         <div className="portfolio-modal-header">
-          <button className="portfolio-modal-close" onClick={onClose} aria-label="Close">
+          <button className="portfolio-modal-close" onClick={handleClose} aria-label="Close">
             <span aria-hidden="true">&larr;</span> back
           </button>
           {href && (

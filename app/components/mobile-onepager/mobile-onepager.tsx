@@ -5,7 +5,7 @@ import { SwiperGallery } from "@/app/components/swiper-gallery/swiper-gallery";
 import { Accordion, AccordionItem } from "@/app/components/accordion/accordion";
 import { ContactLink } from "@/app/components/contact-link/contact-link";
 import { PortfolioModal } from "@/app/components/portfolio-modal/portfolio-modal";
-import { caseDeschiseGallery, slowDaysGallery, arhitecturalGallery, clasaZeroGallery } from "@/app/data/gallery";
+import { portfolioItems } from "@/app/data/gallery";
 import "./mobile-onepager.scss";
 
 // Mobile-only single scroll page, composed from standalone atoms: gallery, title,
@@ -16,12 +16,6 @@ import "./mobile-onepager.scss";
 export function MobileOnePager() {
   const [activePortfolioModal, setActivePortfolioModal] = useState<number | null>(null);
 
-  const portfolioItems = [
-    { title: "casedeschise.ro", gallery: caseDeschiseGallery, href: "https://casedeschise.ro", description: "Annual architectural event in Sibiu and Ramnicu Valcea. Organizers have simple, full content control, including custom signup forms. Signup flow via QR code by email. Mobile first design. Admin dashboard in Sanity." },
-    { title: "slowdays-outside.ro", gallery: slowDaysGallery, href: "https://slowdays-outside.ro", description: "Platform for kids activities. Educators post events and manage signups and group comunication." },
-    { title: "architectural-portfolio.ro", gallery: arhitecturalGallery, href: "https://architectural-portfolio.ro", description: "Portfolio for architectural studio. Minimal, restrained design" },
-    { title: "clasazero.ro", gallery: clasaZeroGallery, href: "https://clasazero.ro", description: "Random stem puzzles for pre-school kids. AI generated graphics. In progress.." },
-  ];
   return (
     <div className="nsc-mobile-onepager">
 

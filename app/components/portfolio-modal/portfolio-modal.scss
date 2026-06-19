@@ -16,6 +16,29 @@
   height: 100vh;
   overflow-y: auto;
   padding: 1.25rem;
+  animation: slideInFromRight 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &.is-closing {
+    animation: slideOutToRight 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutToRight {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
 }
 
 .portfolio-modal-header {

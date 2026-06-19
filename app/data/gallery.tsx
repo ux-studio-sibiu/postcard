@@ -7,11 +7,7 @@ import type { StaticImageData } from "next/image";
 // imports become CDN URLs and the rest of the app keeps consuming { src, alt }.
 
 // Default — loose files in /images root.
-import kitzbuhel from "@/images/251028-Kiotzbuhel-Updated-Edit-10.jpg";
-import caseDeschiseCover from "@/images/case-deschise/case-deschise-cover.jpg";
 import electricSpark from "@/images/electric-creativity-spark-stockcake.webp";
-import fire from "@/images/casedeschise-fire.jpg";
-import window from "@/images/casedeschise-window.jpg";
 import zestrea2 from "@/images/casedeschise-zestrea.jpg";
 
 // casedeschise.ro
@@ -27,14 +23,21 @@ import slowDays2 from "@/images/slow-days-outside/slowdays2.jpg";
 import slowDays3 from "@/images/slow-days-outside/slowdays3.jpg";
 
 // dianaconstantinescu.ro
-import omotesando from "@/images/arhitectural-prototype/08-251104-jp-web-JS-Omotesando-new-edit.jpg";
-import arhitectural2 from "@/images/arhitectural-prototype/2.webp";
+import arhitectural1 from "@/images/arhitectural-prototype/p1.jpg";
+import arhitectural2 from "@/images/arhitectural-prototype/p2.jpg";
+import arhitectural3 from "@/images/arhitectural-prototype/p3.jpg";
+import arhitectural4 from "@/images/arhitectural-prototype/p4.jpg";
 
 // clasazero.ro
 import balloons from "@/images/clasa-zero/balloons-2.jpg";
 import cars1 from "@/images/clasa-zero/cars-1.jpg";
 import cars2 from "@/images/clasa-zero/cars-2.jpg";
 import flowers from "@/images/clasa-zero/flowers-2.jpg";
+
+import round1 from "@/images/clasa-zero/flowers.jpg";
+import round2 from "@/images/clasa-zero/round.jpg";
+import round3 from "@/images/clasa-zero/round2.jpg";
+
 
 export type GallerySlide = {
   src: StaticImageData;
@@ -67,8 +70,6 @@ export const defaultGallery: GallerySlide[] = [
     caption: <><a href="https://casedeschise.ro/sibiu/fresca-magazin-zestrea" target="_blank" rel="noopener noreferrer">www.casedeschise.ro : </a>: Magazinul Zestrea, 2025</>, 
     cssClass: "anim-simple" },
   
-  // { src: kitzbuhel, alt: "Fluted timber wall and concrete hall" },
-  { src: caseDeschiseCover, alt: "Case Deschise", cssClass: "anim-none" },
 ];
 
 export const caseDeschiseGallery: GallerySlide[] = [
@@ -86,8 +87,10 @@ export const slowDaysGallery: GallerySlide[] = [
 ];
 
 export const arhitecturalGallery: GallerySlide[] = [
-  { src: arhitectural2, alt: "Architectural study" },
-  { src: omotesando, alt: "Minimalist retail interior in oak" },
+  { src: arhitectural4, alt: "Photography portfolio cover" },
+  { src: arhitectural1, alt: "Photography portfolio cover" },
+  { src: arhitectural2, alt: "Photography portfolio cover" },
+  // { src: arhitectural3, alt: "Architectural study" },
   
 ];
 
@@ -96,4 +99,25 @@ export const clasaZeroGallery: GallerySlide[] = [
   { src: cars1, alt: "Clasa Zero — cars puzzle", cssClass: "anim-fire" },
   { src: cars2, alt: "Clasa Zero — cars puzzle", cssClass: "anim-simple" },
   { src: flowers, alt: "Clasa Zero — flowers puzzle", cssClass: "anim-simple" },
+
+  { src: round1, alt: "Clasa Zero — sequence puzzle", cssClass: "anim-none" },
+  { src: round2, alt: "Clasa Zero — other puzzle", cssClass: "anim-none" },
+  { src: round3, alt: "clasa-zerol.app : puzzle", cssClass: "anim-none" },
+];
+
+// Single source of truth for the portfolio list, shared by the desktop page
+// (rendered as Accordion items) and the mobile one-pager (rendered as modal
+// triggers). Each item pairs a project with the gallery shown when it opens.
+export type PortfolioItem = {
+  title: string;
+  gallery: GallerySlide[];
+  href: string;
+  description: string;
+};
+
+export const portfolioItems: PortfolioItem[] = [
+  { title: "Case Deschise", gallery: caseDeschiseGallery, href: "https://casedeschise.ro", description: "Annual architectural event in Sibiu and Ramnicu Valcea. Organizers have simple, full content control, including custom signup forms. Signup flow via QR code by email. Mobile first design. Admin dashboard in Sanity." },
+  { title: "Slow Days Outside", gallery: slowDaysGallery, href: "https://slow-days-outside.vercel.app/", description: "Platform for kids activities. Educators post events and manage signups and group comunication." },
+  { title: "Photography Portfolio", gallery: arhitecturalGallery, href: "https://photography-prototype.vercel.app", description: "Portfolio for architectural studio. Minimal, restrained design" },
+  { title: "Clasa Zero", gallery: clasaZeroGallery, href: "https://clasa-zero.vercel.app/game", description: "Random stem puzzles for pre-school kids. AI generated graphics. It is in progress.." },
 ];

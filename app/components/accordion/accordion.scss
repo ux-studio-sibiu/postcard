@@ -133,6 +133,7 @@
         font-size: 0.8rem;
         font-weight: 700;
         color: var(--color-ink);
+        border-bottom:1px solid transparent;
 
         // Mobile: flow left in normal order with its own vertical spacing
         // (inline-block so the vertical margins apply on the otherwise-inline <a>).
@@ -148,8 +149,7 @@
         }
 
         &:hover {
-          text-decoration: underline;
-          text-underline-offset: 0.2em;
+          border-bottom:1px solid var(--color-ink);
         }
 
         span {
