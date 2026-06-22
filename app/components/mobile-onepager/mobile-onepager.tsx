@@ -6,6 +6,7 @@ import { Accordion, AccordionItem } from "@/app/components/accordion/accordion";
 import { ContactLink } from "@/app/components/contact-link/contact-link";
 import { PortfolioModal } from "@/app/components/portfolio-modal/portfolio-modal";
 import { portfolioItems } from "@/app/data/gallery";
+import { serviceItems } from "@/app/data/content";
 import "./mobile-onepager.scss";
 
 // Mobile-only single scroll page, composed from standalone atoms: gallery, title,
@@ -46,14 +47,9 @@ export function MobileOnePager() {
         <div className="onepager-content">
           <h1 className="page-title">ux.studio.sibiu</h1>
           <Accordion>
-            <AccordionItem title="Unique digital solutions">Optimized for speed and performance across all devices.</AccordionItem>
-            <AccordionItem title="Complete content control">Manage your content independently without technical barriers.</AccordionItem>
-            <AccordionItem title="Modern design">
-              <span>Influenced by contemporary design principles and graphic design tradition, we create products that balance clarity, usability and bold visual expression. </span>
-              <span>Design is shaped by context, function and your vision.</span>
-            </AccordionItem>
-            <AccordionItem title="Custom functionality">Built specifically for your needs, no compromises.</AccordionItem>
-            <AccordionItem title="Collaboration">Close collaboration creates stronger products. By working together over time, we can respond to changing needs, improve details, and shape a more practical solution. For this reason, ux.studio.sibiu remains involved beyond delivery, supporting the evolution of the product.</AccordionItem>
+            {serviceItems.map((item) => (
+              <AccordionItem key={item.title} title={item.title}>{item.content}</AccordionItem>
+            ))}
           </Accordion>
         </div>
       </section>

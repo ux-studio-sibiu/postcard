@@ -3,6 +3,7 @@ import { SwiperGallery } from "@/app/components/swiper-gallery/swiper-gallery";
 import { Panel } from "@/app/components/panel/panel";
 import { AccordionItem } from "@/app/components/accordion/accordion";
 import { MobileOnePager } from "@/app/components/mobile-onepager/mobile-onepager";
+import { serviceItems } from "@/app/data/content";
 
 export default function Home() {
   return (
@@ -21,25 +22,9 @@ export default function Home() {
             </p>
           }
         >
-          <AccordionItem title="Unique digital solutions">Optimized for speed and performance across all devices.</AccordionItem>
-          
-          
-          <AccordionItem title="Complete content control">Manage your content independently without technical barriers.</AccordionItem>
-          <AccordionItem title="Modern design">
-            <span>Influenced by contemporary design principles and graphic
-            design tradition, we create products that
-            balance clarity, usability and bold visual expression. </span>
-
-            <span>Design is shaped by context, function and your vision.</span>
-            </AccordionItem>
-          
-          <AccordionItem title="Custom functionality">Built specifically for your needs, no compromises.</AccordionItem>
-          <AccordionItem title="Collaboration">
-            Close collaboration creates stronger products. 
-            By working together over time, we can respond to changing needs, 
-            improve details, and shape a more practical solution. 
-            For this reason, ux.studio.sibiu remains involved beyond delivery,
-            supporting the evolution of the product.</AccordionItem>
+          {serviceItems.map((item) => (
+            <AccordionItem key={item.title} title={item.title}>{item.content}</AccordionItem>
+          ))}
         </Panel>
       }
     />
