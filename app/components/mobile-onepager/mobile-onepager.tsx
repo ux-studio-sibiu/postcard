@@ -25,7 +25,7 @@ export function MobileOnePager() {
   // which clears `activeIndex` — keeping history balanced (no orphan entries).
   const openItem = (idx: number) => {
     setLastIndex(idx);
-    setActiveIndex(idx);
+    setActiveIndex(idx); 
     history.pushState({ portfolio: idx }, "");
   };
   const closeItem = () => history.back();
