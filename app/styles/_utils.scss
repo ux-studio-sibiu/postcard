@@ -20,6 +20,12 @@
   object-fit: contain;
 }
 
+// Force greyscale on an element (and its content — filter applies to the whole
+// subtree, so it also works when set on a wrapper like a gallery slide).
+.grayscale-1 {
+  filter: grayscale(1);
+}
+
 // Margin utilities
 @for $i from 1 through 10 {
   .mt-#{$i} {

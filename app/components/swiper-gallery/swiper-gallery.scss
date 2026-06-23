@@ -90,11 +90,20 @@
     filter: none;
   }
 
-  // Resting state in full colour instead of greyscale. Stackable with any
-  // anim- class (e.g. "anim-fire start-unsaturated"): the chosen animation
-  // still plays on click, then settles back to colour rather than greyscale.
-  .swiper-slide.start-unsaturated img {
-    filter: none;
+  // Always-on firelight: this frame flickers continuously (not just on click),
+  // looping seamlessly since saturation-fire-lit starts and ends on the same
+  // resting colour.
+  .swiper-slide.anim-fire-lit img {
+    will-change: filter;
+    animation: saturation-fire-lit 4.1s ease-in-out infinite;
+  }
+
+  // Auto-glitch: the quick default-style glitch fires once, then the frame rests
+  // in greyscale for the remainder of a 3s loop — so it glitches every 3 seconds
+  // on its own (not just on click).
+  .swiper-slide.anim-fire-glitch img {
+    will-change: filter;
+    animation: saturation-fire-glitch 3s linear infinite;
   }
 
   // On click the active frame plays its chosen colour animation, then snaps
@@ -115,10 +124,6 @@
 
     &.anim-fire img {
       animation: saturation-fire 4.1s ease-in-out;
-    }
-
-    &.anim-fire-lit img {
-      animation: saturation-fire-lit 4.1s ease-in-out;
     }
 
     &.anim-simple img {
@@ -174,6 +179,31 @@
   72% {
     filter: grayscale(0) saturate(1.35);
   }
+  100% {
+    filter: grayscale(1);
+  }
+}
+
+// Auto-glitch: the glitch sequence squeezed into the first 10% of the cycle
+// (~0.3s of a 3s loop), then held in greyscale for the rest — so the quick
+// glitch repeats once every 3 seconds. Greyscale toggle only, no saturation.
+@keyframes saturation-fire-glitch {
+  0% {
+    filter: grayscale(1);
+  }
+  1.5% {
+    filter: grayscale(0);
+  }
+  3% {
+    filter: grayscale(1);
+  }
+  5% {
+    filter: grayscale(0);
+  }
+  7.2% {
+    filter: grayscale(0);
+  }
+  10%,
   100% {
     filter: grayscale(1);
   }
@@ -243,7 +273,6 @@
 // (grayscale stays at 0), so there are no sudden mono <-> colour jumps. It just
 // flickers the warm hue + saturation up like flames, then eases back to the
 // frame's plain resting colour. Pair with a resting-colour class (e.g.
-// "anim-fire-lit start-unsaturated").
 @keyframes saturation-fire-lit {
   0% {
     filter: grayscale(0) hue-rotate(0deg) saturate(1);

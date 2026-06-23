@@ -29,6 +29,7 @@ import colibaPoplaceanFire from "@/images/case-deschise/casedeschise-fire-2.jpg"
 import colibaTaroi5 from "@/images/case-deschise/Coliba Tăroi (5).jpg";
 
 // slowdays-outside.ro
+import slow from "@/images/slow-days-outside/slow2.jpg";
 import slowDays1 from "@/images/slow-days-outside/slowdays.jpg";
 import slowDays2 from "@/images/slow-days-outside/slowdays2.jpg";
 import slowDays3 from "@/images/slow-days-outside/slowdays3.jpg";
@@ -43,7 +44,7 @@ import arhitectural4 from "@/images/arhitectural-prototype/p4.jpg";
 import balloons from "@/images/clasa-zero/balloons-2.jpg";
 import cars1 from "@/images/clasa-zero/cars-1.jpg";
 import cars2 from "@/images/clasa-zero/cars-2.jpg";
-import flowers from "@/images/clasa-zero/flowers-2.jpg";
+import flowers from "@/images/clasa-zero/flowers-5.jpg";
 
 import round1 from "@/images/clasa-zero/flowers.jpg";
 import round2 from "@/images/clasa-zero/round.jpg";
@@ -69,6 +70,7 @@ export const defaultGallery: GallerySlide[] = [
   // { src: electricSpark, alt: "", cssClass:"anim-glitch"  },
 
   { src: test10, alt: "", cssClass:"anim-none" },
+  // { src: test8, alt: "", cssClass:"anim-none" },
   // Test drive — same default glitch animation as electricSpark.
   // { src: test1, alt: "Test image 1", cssClass:"anim-none" },
   // { src: test2, alt: "Test image 2", cssClass:"anim-none" },
@@ -84,11 +86,15 @@ export const defaultGallery: GallerySlide[] = [
     caption: <><a href="https://casedeschise.ro/sibiu/primaria-municipiului-sibiu" target="_blank" rel="noopener noreferrer">www.casedeschise.ro : </a>Primăria Municipiului Sibiu, 2025</>, 
   },
 
-    { src: slowDays2, alt: "Activities for kids", cssClass: "anim-none",
+  //   { src: slowDays2, alt: "Activities for kids", cssClass: "anim-none",
+  //   caption: <><a href="https://slow-days-outside.vercel.app/" target="_blank" rel="noopener noreferrer">www.slow-days-outside.app : </a>Activities for kids</>, 
+  //  },
+
+   { src: slow, alt: "Activities for kids", cssClass: "anim-none",
     caption: <><a href="https://slow-days-outside.vercel.app/" target="_blank" rel="noopener noreferrer">www.slow-days-outside.app : </a>Activities for kids</>, 
    },
 
-  { src: arhitectural2, alt: "Photography portfolio cover", cssClass: "anim-none",
+  { src: arhitectural2, alt: "Photography portfolio cover", cssClass: "anim-none grayscale-1",
     caption: <><a href="https://photography-prototype.vercel.app/" target="_blank" rel="noopener noreferrer">www.photography-prototype.app</a></>, 
   },
 
@@ -99,7 +105,7 @@ export const defaultGallery: GallerySlide[] = [
 
   
 
-  { src: colibaPoplaceanFire, alt: "casedeschise.ro: Coliba Poplăcean, Râul Sadului", cssClass: "anim-fire-lit start-unsaturated",
+  { src: colibaPoplaceanFire, alt: "Coliba Poplăcean", cssClass: "anim-fire-lit",
     caption: <><a href="https://casedeschise.ro/sibiu/coliba-poplacean-tara-colibelor" target="_blank" rel="noopener noreferrer">www.casedeschise.ro : </a> <span>Coliba Poplăcean, Râul Sădului, 2026</span></>,
      },
 
@@ -108,9 +114,9 @@ export const defaultGallery: GallerySlide[] = [
     caption: <><a href="https://clasa-zero.vercel.app/game" target="_blank" rel="noopener noreferrer">www.clasa-zero.app</a> - Stem puzzles for kids</>, 
    },
 
-  { src: zestrea2, alt: "casedeschise.ro: Magazinul Zestrea", 
+  { src: zestrea2, alt: "casedeschise.ro: Magazinul Zestrea", cssClass: "anim-simple",
     caption: <><a href="https://casedeschise.ro/sibiu/fresca-magazin-zestrea" target="_blank" rel="noopener noreferrer">www.casedeschise.ro </a> : Magazinul Zestrea, 2025</>, 
-    cssClass: "anim-simple" },
+     },
   
 ];
 
