@@ -1,7 +1,51 @@
+// Mobile-only. The whole experience is a fixed 100vw x 100svh overlay holding a
+// two-pane track; sliding the track swaps the list pane for the portfolio detail.
+// Scrolling lives inside each pane (.pane-scroll), not the document, so the
+// browser address bar stays put (svh sizing, no document scroll).
 .nsc-mobile-onepager {
-  display: flex;
-  flex-direction: column;
-  gap: 2.5rem;
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh; // fallback for browsers without svh
+  height: 100svh;
+  overflow: hidden;
+  background: var(--color-bg);
+  z-index: 10;
+
+  .onepager-track {
+    display: flex;
+    width: 200%;
+    height: 100%;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &.is-detail {
+      transform: translateX(-50%);
+    }
+  }
+
+  .onepager-pane {
+    flex: 0 0 50%;
+    height: 100%;
+    min-width: 0;
+  }
+
+  // The per-pane vertical scroller. Horizontal padding restores the gutter the
+  // parent .page-container used to provide (it's bypassed by the fixed overlay).
+  .pane-scroll {
+    height: 100%;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    padding: 0 1.25rem;
+  }
+
+  // List pane stacks its sections in a column; the gap only separates sections.
+  .list-pane .pane-scroll {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
 
   // Full viewport height section for hero/hero-like layouts on mobile
   .fullscreen-section {
@@ -69,5 +113,71 @@
   // below leaves room for the pagination dots (which sit just under the square).
   .onepager-gallery {
     aspect-ratio: 1 / 1;
+  }
+
+  // --- Detail pane (selected portfolio item) -------------------------------
+
+  .detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.85rem 0;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+  }
+
+  .detail-back {
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-align: left;
+    transition: text-decoration 0.2s ease;
+
+    &:hover {
+      text-decoration: underline;
+      text-underline-offset: 0.2em;
+    }
+  }
+
+  .detail-gallery {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    flex-shrink: 0;
+    margin-bottom: 4rem;
+  }
+
+  .detail-content {
+    padding: 0 0 1rem;
+
+    > p {
+      font-size: 0.85rem;
+      line-height: 1.55;
+      color: var(--color-ink);
+    }
+  }
+
+  .detail-link {
+    display: block;
+    text-align: center;
+    margin: 1.5rem auto 2rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: text-decoration 0.2s ease;
+
+    &:hover {
+      text-decoration: underline;
+      text-underline-offset: 0.2em;
+    }
+
+    // Top "view live" sits inline in the header, right-aligned.
+    &.detail-link-top {
+      margin: 0;
+      display: inline;
+      text-align: right;
+    }
   }
 }
