@@ -19,6 +19,8 @@ html {
   min-height: 100%;
   width: 100%;
   scroll-behavior: smooth;
+  // Replace the default bluish mobile tap flash with a faint grey.
+  -webkit-tap-highlight-color: rgba(154, 154, 154, 0.35);
   // Minimal page scrollbar (Firefox).
   scrollbar-width: thin;
   scrollbar-color: var(--color-faint) transparent;
