@@ -19,17 +19,35 @@ export function AccordionItem({ title, children, isOpen, onToggle, href, gallery
   // Deferred a frame so the new layout is settled, and smooth so it doesn't jump.
   useEffect(() => {
     if (!isOpen || typeof window === "undefined") return;
-    if (!window.matchMedia("(max-width: 768px)").matches) return;
+
+    // Mobile: the page is the scroller.
+    if (window.matchMedia("(max-width: 768px)").matches) {
+      const id = requestAnimationFrame(() => {
+        const el = itemRef.current;
+        if (!el) return;
+        // Measure the trigger, not the whole item — its panel may be tall now.
+        const trigger = el.querySelector<HTMLElement>(".accordion-trigger");
+        const rect = (trigger ?? el).getBoundingClientRect();
+        // Fully in view — don't move it.
+        if (rect.top >= 0 && rect.bottom <= window.innerHeight) return;
+        // Off-screen — bring the trigger ~50px from the top.
+        window.scrollTo({ top: window.scrollY + rect.top - 50, behavior: "smooth" });
+      });
+      return () => cancelAnimationFrame(id);
+    }
+
+    // Desktop: the .accordion-list is the scroller. If the freshly-opened item's
+    // expanded panel overflows past the container's bottom edge, scroll the
+    // container up just enough that the item's bottom edge meets the container's.
     const id = requestAnimationFrame(() => {
       const el = itemRef.current;
       if (!el) return;
-      // Measure the trigger, not the whole item — its panel may be tall now.
-      const trigger = el.querySelector<HTMLElement>(".accordion-trigger");
-      const rect = (trigger ?? el).getBoundingClientRect();
-      // Fully in view — don't move it.
-      if (rect.top >= 0 && rect.bottom <= window.innerHeight) return;
-      // Off-screen — bring the trigger ~50px from the top.
-      window.scrollTo({ top: window.scrollY + rect.top - 50, behavior: "smooth" });
+      const scroller = el.closest<HTMLElement>(".accordion-list");
+      if (!scroller) return;
+      const overflowBottom = el.getBoundingClientRect().bottom - scroller.getBoundingClientRect().bottom;
+      if (overflowBottom > 0) {
+        scroller.scrollTo({ top: scroller.scrollTop + overflowBottom + 5, behavior: "smooth" });
+      }
     });
     return () => cancelAnimationFrame(id);
   }, [isOpen]);

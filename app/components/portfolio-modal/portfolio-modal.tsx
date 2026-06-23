@@ -47,11 +47,11 @@ export function PortfolioModal({
       <div className={`portfolio-modal${isClosing ? " is-closing" : ""}`} onClick={(e) => e.stopPropagation()}>
         <div className="portfolio-modal-header">
           <button className="portfolio-modal-close" onClick={handleClose} aria-label="Close">
-            <span aria-hidden="true">&larr;</span> back
+            <span className="arrow-faint" aria-hidden="true">&larr;</span> back
           </button>
           {href && (
             <a className="portfolio-modal-link portfolio-modal-link-top" href={href} target="_blank" rel="noopener noreferrer">
-              view live <span aria-hidden="true">&rarr;</span>
+              view live <span className="arrow-faint" aria-hidden="true">&rarr;</span>
             </a>
           )}
         </div>
@@ -63,7 +63,7 @@ export function PortfolioModal({
           <p>{description}</p>
           {href && (
             <a className="portfolio-modal-link" href={href} target="_blank" rel="noopener noreferrer">
-              view live <span aria-hidden="true">&rarr;</span>
+              view live <span className="arrow-faint" aria-hidden="true">&rarr;</span>
             </a>
           )}
         </div>

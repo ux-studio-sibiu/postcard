@@ -124,6 +124,19 @@
         
 
         @include respond-to-max("tablet") {max-width: unset;}
+
+        // Custom-functionality list: two columns on the client (desktop).
+        .service-list {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          column-gap: 1.5rem;
+          row-gap: 0.15rem;
+          margin-top: 0.75rem;
+
+          @include respond-to-max("tablet") {
+            grid-template-columns: 1fr;
+          }
+        }
       }
 
       .accordion-link {

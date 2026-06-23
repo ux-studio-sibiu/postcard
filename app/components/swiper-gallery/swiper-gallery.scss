@@ -90,6 +90,13 @@
     filter: none;
   }
 
+  // Resting state in full colour instead of greyscale. Stackable with any
+  // anim- class (e.g. "anim-fire start-unsaturated"): the chosen animation
+  // still plays on click, then settles back to colour rather than greyscale.
+  .swiper-slide.start-unsaturated img {
+    filter: none;
+  }
+
   // On click the active frame plays its chosen colour animation, then snaps
   // back to greyscale. Only the active slide animates (per-image choice via the
   // anim- class on the slide); off-screen slides stay still.
@@ -108,6 +115,10 @@
 
     &.anim-fire img {
       animation: saturation-fire 4.1s ease-in-out;
+    }
+
+    &.anim-fire-lit img {
+      animation: saturation-fire-lit 4.1s ease-in-out;
     }
 
     &.anim-simple img {
@@ -191,40 +202,87 @@
     filter: grayscale(1);
   }
   14% {
-    filter: grayscale(0.2) sepia(0.4) hue-rotate(-12deg) saturate(1.4);
+    filter: grayscale(0.2) hue-rotate(-12deg) saturate(1.4);
   }
   25% {
-    filter: grayscale(0) sepia(0.5) hue-rotate(-15deg) saturate(1.7);
+    filter: grayscale(0) hue-rotate(-15deg) saturate(1.7);
   }
   31% {
-    filter: grayscale(0) sepia(0.45) hue-rotate(-12deg) saturate(1.4);
+    filter: grayscale(0) hue-rotate(-12deg) saturate(1.4);
   }
   38% {
-    filter: grayscale(0) sepia(0.55) hue-rotate(-15deg) saturate(1.85);
+    filter: grayscale(0) hue-rotate(-15deg) saturate(1.85);
   }
   44% {
-    filter: grayscale(0) sepia(0.45) hue-rotate(-12deg) saturate(1.45);
+    filter: grayscale(0) hue-rotate(-12deg) saturate(1.45);
   }
   52% {
-    filter: grayscale(0) sepia(0.5) hue-rotate(-14deg) saturate(1.7);
+    filter: grayscale(0) hue-rotate(-14deg) saturate(1.7);
   }
   59% {
-    filter: grayscale(0) sepia(0.45) hue-rotate(-12deg) saturate(1.4);
+    filter: grayscale(0) hue-rotate(-12deg) saturate(1.4);
   }
   67% {
-    filter: grayscale(0) sepia(0.5) hue-rotate(-15deg) saturate(1.75);
+    filter: grayscale(0) hue-rotate(-15deg) saturate(1.75);
   }
   74% {
-    filter: grayscale(0) sepia(0.45) hue-rotate(-12deg) saturate(1.45);
+    filter: grayscale(0) hue-rotate(-12deg) saturate(1.45);
   }
   82% {
-    filter: grayscale(0.15) sepia(0.35) hue-rotate(-10deg) saturate(1.3);
+    filter: grayscale(0.15) hue-rotate(-10deg) saturate(1.3);
   }
   91% {
-    filter: grayscale(0.45) sepia(0.2) hue-rotate(-6deg) saturate(1.15);
+    filter: grayscale(0.45) hue-rotate(-6deg) saturate(1.15);
   }
   100% {
     filter: grayscale(1);
+  }
+}
+
+// Always-lit variant of saturation-fire: stays in full colour the whole time
+// (grayscale stays at 0), so there are no sudden mono <-> colour jumps. It just
+// flickers the warm hue + saturation up like flames, then eases back to the
+// frame's plain resting colour. Pair with a resting-colour class (e.g.
+// "anim-fire-lit start-unsaturated").
+@keyframes saturation-fire-lit {
+  0% {
+    filter: grayscale(0) hue-rotate(0deg) saturate(1);
+  }
+  14% {
+    filter: grayscale(0) hue-rotate(-12deg) saturate(1.4);
+  }
+  25% {
+    filter: grayscale(0) hue-rotate(-15deg) saturate(1.7);
+  }
+  31% {
+    filter: grayscale(0) hue-rotate(-12deg) saturate(1.4);
+  }
+  38% {
+    filter: grayscale(0) hue-rotate(-15deg) saturate(1.85);
+  }
+  44% {
+    filter: grayscale(0) hue-rotate(-12deg) saturate(1.45);
+  }
+  52% {
+    filter: grayscale(0) hue-rotate(-14deg) saturate(1.7);
+  }
+  59% {
+    filter: grayscale(0) hue-rotate(-12deg) saturate(1.4);
+  }
+  67% {
+    filter: grayscale(0) hue-rotate(-15deg) saturate(1.75);
+  }
+  74% {
+    filter: grayscale(0) hue-rotate(-12deg) saturate(1.45);
+  }
+  82% {
+    filter: grayscale(0) hue-rotate(-10deg) saturate(1.3);
+  }
+  91% {
+    filter: grayscale(0) hue-rotate(-6deg) saturate(1.15);
+  }
+  100% {
+    filter: grayscale(0) hue-rotate(0deg) saturate(1);
   }
 }
 
