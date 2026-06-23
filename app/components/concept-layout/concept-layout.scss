@@ -1,0 +1,120 @@
+@use "@/app/styles/breakpoints" as *;
+
+// Base = desktop / tablet: both panes side by side, static, no sliding.
+.nsc-concept-layout {
+  position: relative;
+  width: 100%;
+  height: 70vh;
+  overflow: hidden;
+  border: 1px solid var(--color-line);
+
+  .track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+
+  .pane {
+    flex: 0 0 50%;
+    height: 100%;
+    position: relative;
+
+    &.second {
+      border-left: 1px solid var(--color-line);
+      background: #f5f5f5;
+    }
+  }
+
+  .pane-scroll {
+    height: 100%;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    padding: 1.5rem 1.5rem 4rem;
+
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin: 0.5rem 0 1rem;
+    }
+
+    p {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin: 0 0 1rem;
+    }
+  }
+
+  // Sticky bar so the inline slide button stays reachable while the pane
+  // scrolls. The button lives inside the scroller (per the spec) — sticky keeps
+  // it pinned to the top of its own pane.
+  .pane-bar {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: -1.5rem -1.5rem 1rem;
+    padding: 0.85rem 1.5rem;
+    background: inherit;
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .pane-tag {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-muted);
+  }
+
+  .slide-btn {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-ink);
+    background: none;
+    border: 1px solid var(--color-line);
+    border-radius: 999px;
+    padding: 0.4rem 0.9rem;
+    cursor: pointer;
+
+    &.block {
+      display: block;
+      margin-top: 1rem;
+    }
+  }
+}
+
+// Mobile: fixed full-viewport overlay, one pane visible at a time, slide on tap.
+@include respond-to-max("tablet") {
+  .nsc-concept-layout {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh; // fallback for browsers without svh
+    height: 100svh;
+    border: none;
+    z-index: 50;
+    background: var(--color-bg);
+
+    .track {
+      // Twice the viewport so both panes sit in a row; shift by half to reveal
+      // the second. The .pane flex-basis stays 50% (= 100vw each).
+      width: 200%;
+      transition: transform 0.35s ease;
+
+      &.is-second {
+        transform: translateX(-50%);
+      }
+    }
+
+    .pane.second {
+      border-left: none;
+    }
+
+    .pane-scroll {
+      padding-bottom: 5rem;
+    }
+  }
+}
