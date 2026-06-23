@@ -55,7 +55,7 @@ export function SwiperGallery({ slides = defaultGallery }: { slides?: GallerySli
 
   return (
     <div className="nsc-swiper-gallery">
-      <p className="gallery-caption desktop-only">{slides[activeIndex]?.caption ?? slides[activeIndex]?.alt}</p>
+      <p className="gallery-caption">{slides[activeIndex]?.caption ?? slides[activeIndex]?.alt}</p>
 
       {/* Click anywhere on the stage fires the glitch; the edge nav zones
           stopPropagation so they only navigate. */}
