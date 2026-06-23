@@ -36,32 +36,40 @@ export function MobileOnePager() {
     return () => window.removeEventListener("popstate", onPop);
   }, []);
 
-  // Custom pull-to-refresh: if a downward drag starts while the touched pane is
-  // already scrolled to the top and exceeds the threshold, reload the page.
+  // Custom pull-to-refresh: only a hard, intentional pull triggers it. The touch
+  // must start at the top of a pane scroller, drag down past a deliberately large
+  // threshold, and the reload fires on release (touchend) — so a light or
+  // accidental pull never refreshes.
   useEffect(() => {
-    const PULL_THRESHOLD = 90; // px dragged down from the top before reloading
+    const PULL_THRESHOLD = 170; // px of sustained downward drag required to reload
     let startY = 0;
+    let maxPull = 0;
     let armed = false; // touch began at the top of a pane scroller
 
     const onTouchStart = (e: TouchEvent) => {
       const scroller = (e.target as HTMLElement).closest<HTMLElement>(".pane-scroll");
       armed = !!scroller && scroller.scrollTop <= 0;
       startY = e.touches[0].clientY;
+      maxPull = 0;
     };
 
     const onTouchMove = (e: TouchEvent) => {
       if (!armed) return;
-      if (e.touches[0].clientY - startY > PULL_THRESHOLD) {
-        armed = false;
-        location.reload();
-      }
+      maxPull = Math.max(maxPull, e.touches[0].clientY - startY);
+    };
+
+    const onTouchEnd = () => {
+      if (armed && maxPull > PULL_THRESHOLD) location.reload();
+      armed = false;
     };
 
     document.addEventListener("touchstart", onTouchStart, { passive: true });
     document.addEventListener("touchmove", onTouchMove, { passive: true });
+    document.addEventListener("touchend", onTouchEnd, { passive: true });
     return () => {
       document.removeEventListener("touchstart", onTouchStart);
       document.removeEventListener("touchmove", onTouchMove);
+      document.removeEventListener("touchend", onTouchEnd);
     };
   }, []);
 
