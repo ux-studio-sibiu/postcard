@@ -56,6 +56,9 @@ body {
   font-family: var(--font-sans);
   min-height: 100vh;
   width: 100%;
+  // PTR/overscroll can be governed by the body scroller (not just html), so set
+  // it here too — html alone only killed the bounce, not the refresh gesture.
+  overscroll-behavior-y: none;
   background-color: #000000;
   color: var(--color-ink);
   -webkit-font-smoothing: antialiased;
