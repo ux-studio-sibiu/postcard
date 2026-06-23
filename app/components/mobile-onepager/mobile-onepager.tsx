@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SwiperGallery } from "@/app/components/swiper-gallery/swiper-gallery";
 import { Accordion, AccordionItem } from "@/app/components/accordion/accordion";
 import { portfolioItems } from "@/app/data/gallery";
@@ -19,8 +19,22 @@ export function MobileOnePager() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [lastIndex, setLastIndex] = useState(0);
 
-  const openItem = (idx: number) => { setLastIndex(idx); setActiveIndex(idx); };
-  const closeItem = () => setActiveIndex(null);
+  // Opening pushes a synthetic history entry so the browser/OS back button
+  // returns to the list instead of leaving the page. The in-app back button
+  // calls history.back() to consume that entry; both paths land on `popstate`,
+  // which clears `activeIndex` — keeping history balanced (no orphan entries).
+  const openItem = (idx: number) => {
+    setLastIndex(idx);
+    setActiveIndex(idx);
+    history.pushState({ portfolio: idx }, "");
+  };
+  const closeItem = () => history.back();
+
+  useEffect(() => {
+    const onPop = () => setActiveIndex(null);
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
+  }, []);
 
   const detailItem = portfolioItems[lastIndex];
   const detailHref = detailItem.mobileHref ?? detailItem.href;
