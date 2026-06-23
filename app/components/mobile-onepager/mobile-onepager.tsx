@@ -36,6 +36,35 @@ export function MobileOnePager() {
     return () => window.removeEventListener("popstate", onPop);
   }, []);
 
+  // Custom pull-to-refresh: if a downward drag starts while the touched pane is
+  // already scrolled to the top and exceeds the threshold, reload the page.
+  useEffect(() => {
+    const PULL_THRESHOLD = 90; // px dragged down from the top before reloading
+    let startY = 0;
+    let armed = false; // touch began at the top of a pane scroller
+
+    const onTouchStart = (e: TouchEvent) => {
+      const scroller = (e.target as HTMLElement).closest<HTMLElement>(".pane-scroll");
+      armed = !!scroller && scroller.scrollTop <= 0;
+      startY = e.touches[0].clientY;
+    };
+
+    const onTouchMove = (e: TouchEvent) => {
+      if (!armed) return;
+      if (e.touches[0].clientY - startY > PULL_THRESHOLD) {
+        armed = false;
+        location.reload();
+      }
+    };
+
+    document.addEventListener("touchstart", onTouchStart, { passive: true });
+    document.addEventListener("touchmove", onTouchMove, { passive: true });
+    return () => {
+      document.removeEventListener("touchstart", onTouchStart);
+      document.removeEventListener("touchmove", onTouchMove);
+    };
+  }, []);
+
   const detailItem = portfolioItems[lastIndex];
   const detailHref = detailItem.mobileHref ?? detailItem.href;
   const isDetail = activeIndex !== null;
