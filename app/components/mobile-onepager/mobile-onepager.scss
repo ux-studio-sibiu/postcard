@@ -52,8 +52,10 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 100svh;
+    min-height: max(100svh, 600px);
     padding: 2rem 0;
+
+
   }
 
   // Group title + accordion with fixed vertical positioning
