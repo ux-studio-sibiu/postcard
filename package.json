@@ -20,5 +20,12 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "typescript": "^6.0.3"
-  }
+  },
+  "browserslist": [
+    "iOS >= 15.4",
+    "Safari >= 15.4",
+    "Chrome >= 64",
+    "Firefox >= 67",
+    "Edge >= 79"
+  ]
 }
