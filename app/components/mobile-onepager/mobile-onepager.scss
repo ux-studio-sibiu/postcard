@@ -114,6 +114,10 @@
   // Top gallery: SwiperGallery is height:100%, so give it a square box. The gap
   // below leaves room for the pagination dots (which sit just under the square).
   .onepager-gallery {
+    // Safari/WebKit opts a flex item with aspect-ratio out of cross-axis stretch
+    // and sizes it from the (tall) available height instead — so pin the width
+    // explicitly and let aspect-ratio drive only the height.
+    width: 100%;
     aspect-ratio: 1 / 1;
   }
 

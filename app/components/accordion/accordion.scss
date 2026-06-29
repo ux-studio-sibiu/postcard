@@ -178,6 +178,9 @@
       // the floated "view live" link above it.
       .accordion-gallery {
         clear: both;
+        // See .onepager-gallery: pin width so Safari doesn't size this
+        // aspect-ratio box from the available height and overflow.
+        width: 100%;
         aspect-ratio: 1 / 1;
         margin: 0 0 2.5rem 0;
       }
