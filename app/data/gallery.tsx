@@ -9,27 +9,17 @@ import type { StaticImageData } from "next/image";
 // Default — loose files in /images root.
 import electricSpark from "@/images/electric-creativity-spark-stockcake.webp";
 import zestrea2 from "@/images/casedeschise-zestrea.jpg";
-import test1 from "@/images/1.png";
-import test2 from "@/images/2.png";
-import test3 from "@/images/3.png";
-import test4 from "@/images/4.png";
-import test5 from "@/images/5.png";
-import test6 from "@/images/6.png";
-import test7 from "@/images/7.png";
-import test8 from "@/images/8.png";
-import test9 from "@/images/9.png";
-import test10 from "@/images/10.png";
+import test12 from "@/images/12.jpg";
 
 // casedeschise.ro
 import zestrea from "@/images/case-deschise/5. Frescă magazin Zestrea - Artă veche și podoabe compressed.jpg";
-import scara from "@/images/case-deschise/7. Primăria Municipiului Sibiu compressed.jpg";
+import scara from "@/images/case-deschise/primarie-sibiu-scara.jpg";
 import colibaPoplacean10 from "@/images/case-deschise/Coliba Poplăcean (10).jpg";
-import colibaPoplacean3 from "@/images/case-deschise/Coliba Poplăcean (3).jpg";
 import colibaPoplaceanFire from "@/images/case-deschise/casedeschise-fire-2.jpg";
 import colibaTaroi5 from "@/images/case-deschise/Coliba Tăroi (5).jpg";
 
 // slowdays-outside.ro
-import slow from "@/images/slow-days-outside/slow2.jpg";
+import slow from "@/images/slow-days-outside/slow.jpg";
 import slowDays1 from "@/images/slow-days-outside/slowdays.jpg";
 import slowDays2 from "@/images/slow-days-outside/slowdays2.jpg";
 import slowDays3 from "@/images/slow-days-outside/slowdays3.jpg";
@@ -69,7 +59,10 @@ export type GallerySlide = {
 export const defaultGallery: GallerySlide[] = [
   // { src: electricSpark, alt: "", cssClass:"anim-glitch"  },
 
-  { src: test10, alt: "", cssClass:"anim-none" },
+  // { src: test10, alt: "", cssClass:"anim-none" },
+  // { src: test11, alt: "", cssClass:"anim-glitch" },
+  { src: test12, alt: "", cssClass:"anim-glitch" },
+  // { src: test13, alt: "", cssClass:"anim-glitch" },
   // { src: test8, alt: "", cssClass:"anim-none" },
   // Test drive — same default glitch animation as electricSpark.
   // { src: test1, alt: "Test image 1", cssClass:"anim-none" },
@@ -90,7 +83,7 @@ export const defaultGallery: GallerySlide[] = [
   //   caption: <><a href="https://slow-days-outside.vercel.app/" target="_blank" rel="noopener noreferrer">www.slow-days-outside.app : </a>Activities for kids</>, 
   //  },
 
-   { src: slow, alt: "Activities for kids", cssClass: "anim-none",
+   { src: slow, alt: "Activities for kids", cssClass: "anim-none border-3px",
     caption: <><a href="https://slow-days-outside.vercel.app/" target="_blank" rel="noopener noreferrer">www.slow-days-outside.app : </a>Activities for kids</>, 
    },
 
@@ -124,7 +117,7 @@ export const caseDeschiseGallery: GallerySlide[] = [
   { src: scara, alt: "Primăria Municipiului Sibiu", cssClass: "anim-fire" },
   { src: zestrea, alt: "Frescă magazin Zestrea — artă veche și podoabe", cssClass: "anim-simple" },
   { src: colibaPoplacean10, alt: "Coliba Poplăcean", cssClass: "anim-simple" },
-  { src: colibaPoplacean3, alt: "Coliba Poplăcean", cssClass: "anim-simple" },
+  { src: colibaPoplaceanFire, alt: "Coliba Poplăcean", cssClass: "anim-simple" },
   { src: colibaTaroi5, alt: "Coliba Tăroi", cssClass: "anim-simple" },
 ];
 
