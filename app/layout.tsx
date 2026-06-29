@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Lexend } from "next/font/google";
 import { Header } from "@/app/components/header/header";
 import "@/app/styles/globals.scss";
@@ -12,6 +12,14 @@ const lexend = Lexend({
 export const metadata: Metadata = {
   title: "Turcanu Razvan — Portfolio",
   description: "Photography portfolio prototype",
+};
+
+// Lock the viewport on mobile: no pinch / double-tap zoom, fixed scale.
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 };
 
 export default function RootLayout({
