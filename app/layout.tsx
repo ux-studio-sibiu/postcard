@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Lexend } from "next/font/google";
 import { Header } from "@/app/components/header/header";
+import { BackgroundEffect } from "@/app/components/background-effect/background-effect";
 import "@/app/styles/globals.scss";
 
 const lexend = Lexend({
@@ -30,6 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en" data-scroll-behavior="smooth" className={lexend.variable}>
       <body>
+        <BackgroundEffect />
         <div className="page-container">
           <Header />
           <main>{children}</main>

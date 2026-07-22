@@ -67,6 +67,10 @@ body {
 
 .page-container {
   background-color: var(--color-bg);
+  // Stack above .background-effect (fixed, z-index 0) so the container is opaque
+  // over it and hovering the container never reaches the effect layer.
+  position: relative;
+  z-index: 1;
   width: 100%;
   max-width: 1200px;
   // auto top/bottom margins centre vertically when it fits, and collapse to 0
@@ -77,6 +81,7 @@ body {
   // Scaling from the centre keeps it centred (body already does that), so on
   // short viewports the content shrinks inward instead of touching the edges.
   transform-origin: center;
+  box-shadow: 0px 0px 9px 3px #0000009e;
 
   // Short viewports: scale the whole block down a touch so it doesn't crowd
   // the top/bottom edges.
